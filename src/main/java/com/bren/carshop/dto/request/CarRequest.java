@@ -4,8 +4,6 @@ package com.bren.carshop.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -15,17 +13,43 @@ public class CarRequest {
 
     @NotNull
     private Integer year;
-    @NotNull
-    private Double volume;
+
     @NotNull
     @Positive
-    private Long price;
-    @NotBlank
+    private Integer price;
+
+    @NotNull
+    private Double volume;
+
+    @NotNull
+    private Double rating;
+
     private String description;
+
     @NotNull
     private Long modelId;
 
+    private Long bodyTypeId;
+
+    private Long cityId;
+
+    private Long colorId;
+
+    private Long driverTypeId;
+
+    private Long fuelId;
+
+    private Long gearBoxId;
+
     private String photo;
+
+    private Boolean carConditionNew;
+
+    private Integer power;
+
+    private Boolean abs;
+
+    private Boolean leatherSeats;
 
 
 }

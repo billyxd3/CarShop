@@ -3,6 +3,8 @@ package com.bren.carshop.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +23,10 @@ public class Car {
 
     private Double volume;
 
-    private Long price;
+    private Integer price;
 
+    @DecimalMin("0.1")
+    @DecimalMax("5.0")
     private Double rating;
 
     private String photo;

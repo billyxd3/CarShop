@@ -10,9 +10,13 @@ public class ModelResponse {
 
     private Long id;
     private String name;
+    private Long makeId;
+    private MakeResponse makeResponse;
 
     public ModelResponse(Model model) {
         id = model.getId();
         name = model.getName();
+        makeId = model.getMake().getId();
+        makeResponse = new MakeResponse(model.getMake());
     }
 }

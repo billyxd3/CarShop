@@ -21,7 +21,7 @@ public class City {
 
     private String name;
 
-    @OneToOne
+    @ManyToOne
     private Country country;
 
     @OneToOne(mappedBy = "city")

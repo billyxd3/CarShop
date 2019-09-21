@@ -50,6 +50,10 @@ public class MakeService {
                 .map(MakeResponse::new).collect(Collectors.toList());
     }
 
+    public List<MakeResponse> findAllByCountryId(Long countryId) {
+        return makeRepository.findAllByCountryId(countryId).stream().map(MakeResponse::new).collect(Collectors.toList());
+    }
+
     public Make findOne(Long id) {
         return makeRepository.findById(id)
                 .orElseThrow(() -> new NoMatchesException("Model with id " + id + " doesn`t exist"));
@@ -61,6 +65,16 @@ public class MakeService {
         }
         make.setName(request.getName());
         make.setCountry(countryService.findOne(request.getCountryId()));
+//        make.setCountry(countryService.findByIdAndName(request.getCountryId(),request.getCountryName()));
         return make;
+    }
+
+    public List<MakeResponse> findAllByName(String value) {
+        return makeRepository.findAllByNameLike('%' + value + '%', Sort.by("name")).stream()
+                .map(MakeResponse::new).collect(Collectors.toList());
+    }
+
+    public MakeResponse findOneResponse(Long id) {
+        return new MakeResponse(findOne(id));
     }
 }

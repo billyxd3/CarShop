@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/make")
+@RequestMapping("make")
 public class MakeController {
 
     @Autowired
@@ -29,6 +30,21 @@ public class MakeController {
     @GetMapping
     public List<MakeResponse> findAll(@RequestParam(defaultValue = "id") String fieldName) {
         return makeService.findAll(fieldName);
+    }
+
+    @GetMapping("/byCountryId/{countryId}")
+    public List<MakeResponse> findAllByCountryId(@PathVariable Long countryId) {
+        return makeService.findAllByCountryId(countryId);
+    }
+
+    @GetMapping("/one/{id}")
+    public MakeResponse findOne(@PathVariable Long id) {
+        return makeService.findOneResponse(id);
+    }
+
+    @GetMapping("/byName")
+    public List<MakeResponse> findAllByName(@RequestParam String value) {
+        return makeService.findAllByName(value);
     }
 
     @PutMapping

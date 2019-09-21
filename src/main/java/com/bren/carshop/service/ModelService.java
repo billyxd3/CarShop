@@ -1,12 +1,14 @@
 package com.bren.carshop.service;
 
 import com.bren.carshop.dto.request.ModelRequest;
+import com.bren.carshop.dto.response.MakeResponse;
 import com.bren.carshop.dto.response.ModelResponse;
 import com.bren.carshop.entity.Model;
 import com.bren.carshop.exception.HasDependenciesException;
 import com.bren.carshop.exception.NoMatchesException;
 import com.bren.carshop.repository.ModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,8 +46,17 @@ public class ModelService {
         }
     }
 
-    public List<ModelResponse> findAll() {
-        return modelRepository.findAll().stream()
+//    public List<ModelResponse> findAll() {
+//        return modelRepository.findAll().stream()
+//                .map(ModelResponse::new).collect(Collectors.toList());
+//    }
+
+    public List<ModelResponse> findAllByMakeId(Long makeId) {
+        return modelRepository.findAllByMakeId(makeId).stream().map(ModelResponse::new).collect(Collectors.toList());
+    }
+
+    public List<ModelResponse> findAll(String fieldName) {
+        return modelRepository.findAll(Sort.by(fieldName)).stream()
                 .map(ModelResponse::new).collect(Collectors.toList());
     }
 
@@ -61,5 +72,9 @@ public class ModelService {
         model.setName(request.getName());
         model.setMake(makeService.findOne(request.getMakeId()));
         return model;
+    }
+
+    public ModelResponse findOneResponse(Long id) {
+        return new ModelResponse(findOne(id));
     }
 }

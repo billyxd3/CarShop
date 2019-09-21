@@ -32,13 +32,13 @@ public class FileService {
         return fileName;
     }
 
-    private String getFileExtensionFromMetaInfo(String metaInfo) {
-        return metaInfo.split("/")[1].split(";")[0];
-    }
-
     private String createFileName(String fileExtension) {
         String fileName = UUID.randomUUID().toString();
         return String.format("%s.%s", fileName, fileExtension);
+    }
+
+    private String getFileExtensionFromMetaInfo(String metaInfo) {
+        return metaInfo.split("/")[1].split(";")[0];
     }
 
     private void createDir(String dir) {

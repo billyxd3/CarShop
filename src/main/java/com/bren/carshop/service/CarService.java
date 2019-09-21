@@ -1,19 +1,19 @@
 package com.bren.carshop.service;
 
+import com.bren.carshop.dto.request.CarCriteriaRequest;
 import com.bren.carshop.dto.request.CarRequest;
 import com.bren.carshop.dto.response.CarResponse;
 import com.bren.carshop.dto.response.PageResponse;
-import com.bren.carshop.entity.Car;
-import com.bren.carshop.entity.Model;
+import com.bren.carshop.entity.*;
 import com.bren.carshop.exception.NoMatchesException;
 import com.bren.carshop.repository.CarRepository;
+import com.bren.carshop.specification.CarSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,28 +28,32 @@ public class CarService {
     private ModelService modelService;
 
     @Autowired
+    private BodyTypeService bodyTypeService;
+
+    @Autowired
+    private CityService cityService;
+
+    @Autowired
+    private ColorService colorService;
+
+    @Autowired
+    private DriverTypeService driverTypeService;
+
+    @Autowired
+    private FuelService fuelService;
+
+    @Autowired
+    private GearboxService gearboxService;
+
+    @Autowired
     private FileService fileService;
 
-//    public void save(CarRequest request) {
-//        Car car = new Car();
-//        car.setPrice(request.getPrice());
-//        car.setVolume(request.getVolume());
-//        car.setYear(request.getYear());
-//        Model model =  modelService.findOne(request.getModelId());
-//        car.setModel(model);
-//        carRepository.save(car);
-//    }
+
     public void save(CarRequest request) throws IOException {
         carRepository.save(carRequestToCar(null,request));
     }
 
     public List<CarResponse> findAll() {
-//        List<Car> all = carRepository.findAll();
-//        List<CarResponse> responses = new ArrayList<>();
-//        for (Car car : carRepository.findAll()) {
-//            responses.add(new CarResponse(car));
-//        }
-//        return responses;
         return carRepository.findAll().stream()
                 .map(CarResponse::new).collect(Collectors.toList());
     }
@@ -58,12 +62,16 @@ public class CarService {
         carRepository.save(carRequestToCar(findOne(id),request));
     }
 
-    public void delete(CarRequest request, Long id) throws IOException {
-        carRepository.delete(carRequestToCar(findOne(id),request));
+    public void delete(Long id) {
+        carRepository.delete(findOne(id));
     }
 
     private Car findOne(Long id) {
         return carRepository.findById(id).orElseThrow(() -> new NoMatchesException("Car with id" + id + "doesn`t exists"));
+    }
+
+    public CarResponse findOneResponse(Long id) {
+        return new CarResponse(findOne(id));
     }
 
     private Car carRequestToCar(Car car, CarRequest request) throws IOException {
@@ -73,21 +81,84 @@ public class CarService {
         if (request.getPhoto() != null) {
             car.setPhoto(fileService.saveFile(request.getPhoto()));
         }
+        car.setYear(request.getYear());
         car.setPrice(request.getPrice());
         car.setVolume(request.getVolume());
-        car.setYear(request.getYear());
+        car.setRating(request.getRating());
         Model model =  modelService.findOne(request.getModelId());
         car.setModel(model);
+
+        if (request.getBodyTypeId() != null) {
+            car.setBodyType(bodyTypeService.findOne(request.getBodyTypeId()));
+        }
+        if (request.getCityId() != null) {
+            car.setCity(cityService.findOne(request.getCityId()));
+        }
+        if (request.getColorId() != null) {
+            car.setColor(colorService.findOne(request.getColorId()));
+        }
+        if (request.getDriverTypeId() != null) {
+            car.setDriverType(driverTypeService.findOne(request.getDriverTypeId()));
+        }
+        if (request.getFuelId() != null) {
+            car.setFuel(fuelService.findOne(request.getFuelId()));
+        }
+        if (request.getGearBoxId() != null) {
+            car.setGearbox(gearboxService.findOne(request.getGearBoxId()));
+        }
         car.setDescription(request.getDescription());
+        car.setCarConditionNew(request.getCarConditionNew());
+        car.setPower(request.getPower());
+        car.setAbs(request.getAbs());
+        car.setLeatherSeats(request.getLeatherSeats());
         return car;
     }
 
-    public PageResponse<CarResponse> findPage(Integer page, Integer size, String fieldName, Sort.Direction direction) {
-        Page<Car> data = carRepository.findAll(PageRequest.of(page,size, direction, fieldName));
+    public PageResponse<CarResponse> findPage(Integer page, Integer size, String fieldId, Sort.Direction direction) {
+        Page<Car> data = carRepository.findAll(PageRequest.of(page,size, direction, fieldId));
         List<CarResponse> collect = data.get().map(CarResponse::new).collect(Collectors.toList());
         return new PageResponse<>(data.getTotalElements(),
                 data.getTotalPages(),
                 collect);
     }
+
+    public PageResponse<CarResponse> findPageByCriteria(CarCriteriaRequest cr,Integer page, Integer size, String fieldId, Sort.Direction direction) {
+        Page<Car> data = carRepository.findAll(new CarSpecification(cr),PageRequest.of(page,size,direction,fieldId));
+        List<CarResponse> collect = data.get().map(CarResponse::new).collect(Collectors.toList());
+        return new PageResponse<>(data.getTotalElements(),
+                data.getTotalPages(),
+                collect);
+    }
+
+
+
+
+
+    //        List<Car> all = carRepository.findAll();
+//        List<CarResponse> responses = new ArrayList<>();
+//        for (Car car : carRepository.findAll()) {
+//            responses.add(new CarResponse(car));
+//        }
+//        return responses;
+
+//    public PageResponse<CarResponse> findPageByCriteria(PaginationRequest pr) {
+//        Page<Car> data = carRepository.findAll(new CarSpecification(pr.getCarCriteriaRequest()),PageRequest.of(pr.getPage(),pr.getSize(),pr.getDirection(),pr.getFieldId()));
+//        List<CarResponse> collect = data.get().map(CarResponse::new).collect(Collectors.toList());
+//        return new PageResponse<>(data.getTotalElements(),
+//                data.getTotalPages(),
+//                collect);
+//    }
+
+    //    public void save(CarRequest request) {
+//        Car car = new Car();
+//        car.setPrice(request.getPrice());
+//        car.setVolume(request.getVolume());
+//        car.setYear(request.getYear());
+//        Model model =  modelService.findOne(request.getModelId());
+//        car.setModel(model);
+//        carRepository.save(car);
+//    }
+
+
 
 }

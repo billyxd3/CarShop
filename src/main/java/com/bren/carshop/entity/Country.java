@@ -19,7 +19,7 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
 
     private String shortName;
@@ -27,9 +27,12 @@ public class Country {
     @OneToMany(mappedBy = "country")
     private List<Make> makes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "country")
+    private List<City> cities = new ArrayList<>();
+
 //    @OneToOne
 //    private User user;
 
-    @OneToOne(mappedBy = "country")
-    private City city;
+//    @OneToOne(mappedBy = "country")
+//    private City city;
 }

@@ -1,26 +1,24 @@
 package com.bren.carshop.controller;
-
+import com.bren.carshop.dto.request.CarCriteriaRequest;
 import com.bren.carshop.dto.request.CarRequest;
 import com.bren.carshop.dto.response.CarResponse;
 import com.bren.carshop.dto.response.PageResponse;
-import com.bren.carshop.entity.Car;
 import com.bren.carshop.service.CarService;
-import io.swagger.models.auth.In;
-import javafx.scene.control.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
 
+
+@CrossOrigin
 @RestController
-@RequestMapping("/car")
+@RequestMapping("car")
 public class CarController {
 
     @Autowired
     private CarService carService;
+
 
     @PostMapping
     public void save(@Valid @RequestBody CarRequest request) throws IOException {
@@ -36,9 +34,24 @@ public class CarController {
     public PageResponse<CarResponse> findPage(
             @RequestParam Integer page,
             @RequestParam Integer size,
-            @RequestParam(defaultValue = "name") String fieldName,
+            @RequestParam(defaultValue = "id") String fieldId,
             @RequestParam(defaultValue = "ASC") Sort.Direction direction) {
-        return carService.findPage(page,size, fieldName, direction);
+        return carService.findPage(page,size, fieldId, direction);
+    }
+
+    @GetMapping("/filter")
+    public PageResponse<CarResponse> findPageByCriteria(
+            CarCriteriaRequest carCriteriaRequest,
+            @RequestParam Integer page,
+            @RequestParam Integer size,
+            @RequestParam(defaultValue = "id") String fieldId,
+            @RequestParam(defaultValue = "ASC") Sort.Direction direction) {
+        return carService.findPageByCriteria(carCriteriaRequest,page,size,fieldId,direction);
+    }
+
+    @GetMapping("/one/{id}")
+    public CarResponse findOne(@PathVariable Long id) {
+        return carService.findOneResponse(id);
     }
 
     @PutMapping
@@ -46,8 +59,10 @@ public class CarController {
         carService.update(request,id);
     }
 
-//    @DeleteMapping
-//    public void delete(@RequestBody CarRequest request)
+    @DeleteMapping
+    public void delete(Long id) {
+        carService.delete(id);
+    }
 
 //    @GetMapping
 //    public PageResponse<CarResponse> findPage(@Valid PaginationRequest paginationRequest) {
