@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>country</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+    h5 {
+        color:white;
+    }
+</style>
+<body>
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+        <div id='stars3'></div>
+        <div id='stars'></div>
+        <div class="nav-wrapper ">
+            <div class="container">
+                <!--                <a href="#" class="brand-logo"><img src="https://dynamic.brandcrowd.com/asset/logo/ad41d6a4-3f72-4e21-b766-385e3a4277ea/logo?v=4&text=AutoBan" height="64" width="80" ></a>-->
+                <a href="#" data-target="mobile-demo" class="
+            sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="center-align" id="nav-mobile" class="right hide-on-med-and-down">
+                    <h4 class="left-align">Admin Page</h4>
+                    <li><a href="/admincar">Car</a></li>
+                    <li><a href="/admincountry">Country</a></li>
+                    <li><a href="/admincity">City</a></li>
+                    <li><a href="/adminmake">Make</a></li>
+                    <li><a href="/adminmodel">Model</a></li>
+                    <li><a href="/adminbodytype">BodyType</a></li>
+                    <li><a href="/admincolor">Color</a></li>
+                    <li><a href="/admindrivertype">Driver Type</a></li>
+                    <li><a href="/adminfuel">Fuel</a></li>
+                    <li><a href="/admingearbox">Gearbox</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="img/cityporsche.jpeg">
+    </div>
+</div>
+<div class="card-panel lighten-2" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
+    <h5>Country</h5>
+</div>
+
+<div class="create-container" style="display: none">
+    <input type="text" id="name-input" placeholder="Name">
+<!--    <button id="send-btn">SEND</button>-->
+    <button id="send-btn" class="btn waves-effect waves-light" type="submit" name="action" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">Send</button>
+    <button id="clear-btn" class="btn waves-effect waves-light" type="clear" name="clear" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">Clear</button>
+    <div class="hint"></div>
+
+</div>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Actions <a class="btn-add btn-floating btn-large waves-effect waves-light " style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);"><i class="material-icons">+</i></a></td>
+    </tr>
+    </thead>
+    <tbody class="countries"></tbody>
+</table>
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    const HOST = `http://localhost:8080`;
+
+    const $table = $('.countries');
+    const $nameInput = $('#name-input');
+    const $sendBtn = $('#send-btn');
+    const $createContainer = $('.create-container');
+
+    const appendCountry = (country) => {
+        $table.append(`
+             <tr>
+                  <td>${country.id}</td>
+                  <td>${country.name}</td>
+                  <td> <button data-id="${country.id}" class="delete-btn waves-effect waves-teal btn-flat" >DELETE</button>
+                  <button data-id="${country.id}" class="update-btn waves-effect waves-teal btn-flat">UPDATE</></td>
+            </tr>
+        `)
+    };
+
+    const deleteRequest = id => {
+        $.ajax({
+            url: `${HOST}/country?id=${id}`,
+            type: `DELETE`,
+            success: res => {
+                getCountries()
+            },
+            error: err => {
+                console.log(err);
+                alert('Something went wrong')
+            }
+        });
+    };
+
+    const onClickUpdateBtn = _ => {
+        $('.update-btn').click(e => {
+            $createContainer.slideToggle();
+            const id = e.target.getAttribute('data-id');
+            initUpdateForm(id);
+        })
+    };
+
+    const initUpdateForm = (id) => {
+        $.ajax({
+            url: `${HOST}/country/one/${id}`,
+            type: `GET`,
+            success: res => {
+                $nameInput.val(res.name);
+                $sendBtn.attr('data-id',id);
+            },
+            error: err => {
+                console.log(err);
+                alert('Something went wrong')
+            }
+        });
+    };
+
+    const onClickDeleteBtn = _ => {
+        $('.delete-btn').click(e => {
+            const id = e.target.getAttribute('data-id');
+            deleteRequest(id);
+        });
+    };
+
+    const appendCountries = countries => {
+        for (const country of countries ) {
+            appendCountry(country);
+        }
+    };
+
+    const getCountries = _ => {
+        $.ajax({
+            url: `${HOST}/country`,
+            type: `GET`,
+            success: res => {
+                console.log(res);
+                $table.html('');
+                appendCountries(res);
+                onClickDeleteBtn();
+                onClickUpdateBtn();
+            },
+            error: err => {
+                console.log(err);
+                alert('Something went wrong')
+            }
+        });
+    };
+
+    $('.btn-add').click(e => {
+        $createContainer.slideToggle();
+    });
+
+
+    $sendBtn.click(e =>  {
+        const request = {
+            url: `${HOST}/country`,
+            type: `POST`,
+            contentType: 'application/json',
+            data: JSON.stringify({
+                name: $nameInput.val()
+            }),
+            success: res => {
+                clearForm();
+                getCountries();
+
+            },
+            error: err => {
+                console.log(err);
+                alert('Something went wrong')
+            }
+        };
+
+
+
+        const id = $sendBtn.attr('data-id')
+        if (!id) {
+            $.ajax({
+                ...request,
+                url: `${HOST}/country`,
+                type: `POST`
+            });
+        } else {
+            $.ajax({
+                ...request,
+                url: `${HOST}/country?id=${id}`,
+                type: `PUT`
+            });
+        }
+    });
+
+    const clearForm = _ => {
+         $nameInput.val('');
+         $sendBtn.attr('data-id','');
+    };
+
+    $(`#clear-btn`).click(clearForm);
+
+    getCountries();
+</script>
+
+<script>
+    $('#name-input').keypress(e => {
+        console.log("sdas");
+        $.ajax({
+            // url: `http://localhost:8080/country/byName?value=${$(e.target).val()}`,
+            url: `http://localhost:8080/country/byName?value=${e.target.value}`,
+            type: 'GET',
+            success: res => {
+                const $hint = $('.hint');
+                $hint.html('');
+                for (const country of res) {
+                    $hint.append(`<p>${country.id}. ${country.name}</p>`)
+                    // $hint.append(`<p>${country.id}. ${country.name}</p>`)
+                }
+            },
+            error: err => {
+                console.log(err);
+                alert('Something went wrong')
+            }
+        })
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.parallax').parallax();
+    });
+</script>
+</body>
+</html>

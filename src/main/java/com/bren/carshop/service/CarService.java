@@ -129,36 +129,4 @@ public class CarService {
                 data.getTotalPages(),
                 collect);
     }
-
-
-
-
-
-    //        List<Car> all = carRepository.findAll();
-//        List<CarResponse> responses = new ArrayList<>();
-//        for (Car car : carRepository.findAll()) {
-//            responses.add(new CarResponse(car));
-//        }
-//        return responses;
-
-//    public PageResponse<CarResponse> findPageByCriteria(PaginationRequest pr) {
-//        Page<Car> data = carRepository.findAll(new CarSpecification(pr.getCarCriteriaRequest()),PageRequest.of(pr.getPage(),pr.getSize(),pr.getDirection(),pr.getFieldId()));
-//        List<CarResponse> collect = data.get().map(CarResponse::new).collect(Collectors.toList());
-//        return new PageResponse<>(data.getTotalElements(),
-//                data.getTotalPages(),
-//                collect);
-//    }
-
-    //    public void save(CarRequest request) {
-//        Car car = new Car();
-//        car.setPrice(request.getPrice());
-//        car.setVolume(request.getVolume());
-//        car.setYear(request.getYear());
-//        Model model =  modelService.findOne(request.getModelId());
-//        car.setModel(model);
-//        carRepository.save(car);
-//    }
-
-
-
 }

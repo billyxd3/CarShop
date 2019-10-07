@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Let browser know website is optimized for mobile-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+    <link rel="stylesheet" href= css/catalog.css>
+    <meta charset="UTF-8">
+    <title>Car</title>
+</head>
+<style>
+    h5 {
+        color:white;
+    }
+</style>
+<body>
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+    <div id='stars3'></div>
+<div id='stars'></div>
+        <div class="nav-wrapper ">
+            <div class="container">
+                <!--                <a href="#" class="brand-logo"><img src="https://dynamic.brandcrowd.com/asset/logo/ad41d6a4-3f72-4e21-b766-385e3a4277ea/logo?v=4&text=AutoBan" height="64" width="80" ></a>-->
+                <a href="#" data-target="mobile-demo" class="
+            sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="center-align" id="nav-mobile" class="right hide-on-med-and-down">
+                    <h4 class="left-align">Admin Page</h4>
+                    <li><a href="/admincar">Car</a></li>
+                    <li><a href="/admincountry">Country</a></li>
+                    <li><a href="/admincity">City</a></li>
+                    <li><a href="/adminmake">Make</a></li>
+                    <li><a href="/adminmodel">Model</a></li>
+                    <li><a href="/adminbodytype">BodyType</a></li>
+                    <li><a href="/admincolor">Color</a></li>
+                    <li><a href="/admindrivertype">Driver Type</a></li>
+                    <li><a href="/adminfuel">Fuel</a></li>
+                    <li><a href="/admingearbox">Gearbox</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div id="stars2"></div>
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="img/cityporsche.jpeg">
+    </div>
+</div>
+<div class="card-panel lighten-2" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
+    <h5>Car</h5>
+</div>
+<ul class="collapsible">
+    <li class="active">
+        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Add information</div>
+<div id="create-form" class="collapsible-body" >
+    <div>
+        <label for="create-form_country-select">Country</label>
+        <select id="create-form_country-select" class="browser-default waves-light btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);"></select>
+    </div>
+    <div>
+        <label for="create-form_make-select">Make</label>
+        <select id="create-form_make-select" class="browser-default waves-light btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);" disabled></select>
+    </div>
+    <div>
+        <label for="create-form_model-select" >Model</label>
+        <select id="create-form_model-select" class="browser-default waves-light btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);" disabled></select>
+    </div>
+    <div class="file-field input-field" >
+        <div class="btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
+            <span>File</span>
+            <input id="create-form_image-input" type="file">
+        </div>
+        <div class="file-path-wrapper">
+            <input id="create-form_textimg-input" class="file-path validate" type="text">
+        </div>
+    </div>
+
+<!--    <div>-->
+<!--        <input id="create-form_image-input" class="waves-effect waves-light btn" type="file" >-->
+<!--    </div>-->
+    <div>
+        <input id="create-form_year-input" placeholder="Year" >
+    </div>
+    <div>
+        <input id="create-form_price-input" type="number" placeholder="Price">
+    </div>
+
+    <div>
+        <input id="create-form_volume-input" type="number" placeholder="Volume">
+    </div>
+    <div>
+        <input id="create-form_rating-input" type="number" placeholder="Rating">
+    </div>
+    <div>
+        <label for="create-form_description-input">Description</label>
+        <br>
+        <textarea class="materialize-textarea" name="Description" id="create-form_description-input" cols="30" rows="10"></textarea>
+    </div>
+    <div class="create-container_additional-options" style="display: none">
+        <div>
+            <label for="create-form_city-select" >City</label>
+            <select id="create-form_city-select" class="browser-default waves-light btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);"></select>
+        </div>
+
+    <div>
+        <label for="create-form_bodyType-select">Body Type</label>
+        <select id="create-form_bodyType-select" class="browser-default waves-light btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);"></select>
+    </div>
+        <ul class="collapsible">
+            <li class="active">
+                <div class="collapsible-header"><i class="material-icons">whatshot</i>Choose color</div>
+                <div class="collapsible-body">
+                    <label for="color-checkbox">Choose color</label>
+                    <form id="color-checkbox" class="colors" action="#">
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <label for="create-form_driverType-select">Driver Type</label>
+            <select id="create-form_driverType-select" class="browser-default waves-light btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
+            </select>
+        </div>
+        <div>
+            <label for="create-form_fuel-select">Fuel</label>
+            <select id="create-form_fuel-select" class="browser-default waves-light btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);"></select>
+        </div>
+        <div>
+            <label for="create-form_gearbox-select">Gearbox</label>
+            <select id="create-form_gearbox-select" class="browser-default waves-light btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);"></select>
+        </div>
+        <div>
+            <input id="create-form_power-input" type="number" placeholder="Power">
+        </div>
+        <form action="#">
+            <p>
+                <label>
+                    <input id="condNew" type="checkbox" value="false" />
+                    <span>Car Condition New</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input id="abs-checkbox" type="checkbox" value="false"/>
+                    <span>ABS</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input id="leatherSeats-checkbox" type="checkbox" value="false"/>
+                    <span>Leather Seats</span>
+                </label>
+            </p>
+        </form>
+    </div>
+
+    <div>
+        <button id="create-form_send-btn" class="btn waves-effect waves-light" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">Send</button>
+        <button id="clear-btn" class="btn waves-effect waves-light" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">Clear</button>
+        <a class="btn-add btn-floating btn-large waves-effect waves-light " style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);"><i>+</i></a>
+    </div>
+</div>
+    </li>
+</ul>
+
+
+<ul class="collapsible">
+    <li class="active">
+        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Cars Information</div>
+        <div class="collapsible-body">
+            <table>
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>COUNTRY</td>
+                    <td>MAKE</td>
+                    <td>MODEL</td>
+                    <td>CITY</td>
+                    <td>YEAR</td>
+                    <td>PRICE</td>
+                    <td>VOLUME</td>
+                    <td>RATING</td>
+                    <td>DESCRIPTION</td>
+                    <td>POWER</td>
+                    <td>CarCond</td>
+                    <td>ABS</td>
+                    <td>LS</td>
+                    <td>BodyType</td>
+                    <td>COLOR</td>
+                    <td>DriverType</td>
+                    <td>FUEL</td>
+                    <td>GEARBOX</td>
+                    <td>PHOTO</td>
+                    <td>ACTIONS</td>
+                </tr>
+                </thead>
+                 <tbody class="cars"></tbody>
+            </table>
+<!--            <div>-->
+<!--                <ul class="pagination center-align">-->
+<!--                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>-->
+<!--                    <li class="active teal lighten-2"><a href="#!">1</a></li>-->
+<!--                    <li class="waves-effect"><a href="#!">2</a></li>-->
+<!--                    <li class="waves-effect"><a href="#!">3</a></li>-->
+<!--                    <li class="waves-effect"><a href="#!">4</a></li>-->
+<!--                    <li class="waves-effect"><a href="#!">5</a></li>-->
+<!--                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+        </div>
+    </li>
+</ul>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Import materialize.css-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!--    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>-->
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="js/utils.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    const HOST = 'http://localhost:8080';
+    // const $form = $(`.create-form`);
+    const $yearInput = $(`#create-form_year-input`);
+    const $priceInput = $(`#create-form_price-input`);
+    const $imgInput = $(`#create-form_image-input`);
+    const $imgTextInput = $(`#create-form_textimg-input`);
+    const $volumeInput = $(`#create-form_volume-input`);
+    const $ratingInput = $(`#create-form_rating-input`);
+    const $countrySelect = $(`#create-form_country-select`);
+    const $makeSelect = $(`#create-form_make-select`);
+    const $modelSelect = $(`#create-form_model-select`);
+    const $citySelect = $(`#create-form_city-select`);
+    const $bodyTypeSelect = $('#create-form_bodyType-select');
+    const $driverTypeSelect = $('#create-form_driverType-select');
+    const $fuelSelect = $('#create-form_fuel-select');
+    const $gearboxSelect = $('#create-form_gearbox-select');
+    const $descriptionInput = $(`#create-form_description-input`);
+    const $powerInput = $('#create-form_power-input');
+    const $cars = $('.cars');
+    const $condNew = $('#condNew');
+    const $abs = $('#abs-checkbox');
+    const $leatherSeats = $('#leatherSeats-checkbox');
+    const $colors = $('.colors');
+    const $colorInput = $(`.span-color`);
+    const $createAddOption = $('.create-container_additional-options');
+    const $sendBtn = $(`#create-form_send-btn`);
+
+    const appendCars = car => {
+        $cars.append(`
+        <tr>
+            <td>${car.id}</td>
+            <td>${car.modelResponse.makeResponse.countryResponse.name}</td>
+            <td>${car.modelResponse.makeResponse.name}</td>
+            <td>${car.modelResponse.name}</td>
+            <td>${car.cityResponse ? car.cityResponse.name : ''}</td>
+            <td>${car.year}</td>
+            <td>${car.price}</td>
+            <td>${car.volume}</td>
+            <td>${car.rating}</td>
+            <td>${car.description}</td>
+            <td>${car.power}</td>
+            <td>${car.carConditionNew}</td>
+            <td>${car.abs}</td>
+            <td>${car.leatherSeats}</td>
+            <td>${car.bodyTypeResponse ? car.bodyTypeResponse.name : ''}</td>
+            <td>${car.colorResponse ? car.colorResponse.name : ''}</td>
+            <td>${car.driverTypeResponse ? car.driverTypeResponse.name : ''}</td>
+            <td>${car.fuelResponse ? car.fuelResponse.name : ''}</td>
+            <td>${car.gearboxResponse ? car.gearboxResponse.name : ''}</td>
+            <td><img width="100" height="100" src="${HOST}/images/${car.photo}"></td>
+            <td><button class="update-btn btn waves-effect waves-light" data-id="${car.id}" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">UPDATE</button></td>
+            <td><button class="delete-btn btn waves-effect waves-light" data-id="${car.id}" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">DELETE</button></td>
+        </tr>
+        `);
+    };
+
+    const getCars = () => {
+        console.log("asdsadsa");
+        $.ajax({
+            url: `${HOST}/car?page=0&size=1000`,
+            type: 'GET',
+            success: res => {
+                $cars.html('');
+                for (const car of res.data) {
+                    appendCars(car);
+                }
+                $(`.update-btn`).click(onUpdateClick);
+                $(`.delete-btn`).click(onDeleteClick);
+            },
+            error: appHandleError
+        })
+    };
+
+    const getColors = () => {
+        $.ajax({
+            url: `${HOST}/color`,
+            type: 'GET',
+            success: res => {
+                $colors.val('');
+                for (const color of res) {
+                    $colors.append(`
+                        <p>
+                            <label>
+                                <input value="${color.id}" class="with-gap color-radio" name="group1" type="radio"/>
+                                <span class="span-color">${color.name}</span>
+                            </label>
+                        </p>`)
+                }
+            },
+            error: appHandleError
+        })
+    };
+
+    const getCheckedColorId = () => {
+        let res;
+        // $('.color-radio').each((i, e) => {
+        $(`.color-radio`).each((i, e) => {
+            if (e.checked) {
+                res = parseInt(e.value);
+            }
+        });
+        return res;
+    };
+
+    const getCountries = () => {
+        $.ajax({
+            url: `${HOST}/country`,
+            type: 'GET',
+            success: res => {
+                $countrySelect.html('<option disabled selected>Select country</option>');
+                for (const country of res) {
+                    $countrySelect.append(`<option value="${country.id}">${country.name}</option>`)
+                }
+            },
+            error: appHandleError
+        })
+    };
+
+    const getCities = () => {
+        $.ajax({
+            url: `${HOST}/city`,
+            type: 'GET',
+            success: res => {
+                $citySelect.html('<option disabled selected>Select city</option>');
+                for (const city of res) {
+                    $citySelect.append(`<option value="${city.id}">${city.name}</option>`)
+                }
+            },
+            error: appHandleError
+        })
+    };
+
+    const getBodyTypes = () => {
+        $.ajax({
+            url: `${HOST}/bodyType`,
+            type: 'GET',
+            success: res => {
+                $bodyTypeSelect.html('<option disabled selected>Select Body Type</option>');
+                for (const bodyType of res) {
+                    $bodyTypeSelect.append(`<option value="${bodyType.id}">${bodyType.name}</option>`)
+                }
+            },
+            error: appHandleError
+        })
+    };
+
+    const getDriverTypes = () => {
+        $.ajax({
+            url: `${HOST}/driverType`,
+            type: 'GET',
+            success: res => {
+                $driverTypeSelect.html('<option disabled selected>Select Driver Type</option>');
+                for (const driverType of res) {
+                    $driverTypeSelect.append(`<option value="${driverType.id}">${driverType.name}</option>`)
+                }
+            },
+            error: appHandleError
+        })
+    };
+
+    const getFuels = () => {
+        $.ajax({
+            url: `${HOST}/fuel`,
+            type: 'GET',
+            success: res => {
+                $fuelSelect.html('<option disabled selected>Select Fuel</option>');
+                for (const fuel of res) {
+                    $fuelSelect.append(`<option value="${fuel.id}">${fuel.name}</option>`)
+                }
+            },
+            error: appHandleError
+        })
+    };
+
+    const getGearboxes = () => {
+        $.ajax({
+            url: `${HOST}/gearbox`,
+            type: 'GET',
+            success: res => {
+                $gearboxSelect.html(`<option disabled selected>Select Gearbox</option>`);
+                for (const gearbox of res) {
+                    $gearboxSelect.append(`<option value="${gearbox.id}">${gearbox.name}</option>`)
+                }
+            },
+            error: appHandleError
+        })
+    };
+
+    const onCountrySelect = (makeId,modelId) => {
+        const id = $sendBtn.attr('data-id');
+        // const id = e.target.getAttribute('data-id');
+        $.ajax({
+            url: `${HOST}/make/byCountryId/${$countrySelect.val()}`,
+            type: "GET",
+            success: res => {
+                $makeSelect.html('<option disabled selected>Select make</option>');
+                for (const make of res) {
+                    $makeSelect.append(`<option value="${make.id}">${make.name}</option>`)
+                }
+                $makeSelect[0].removeAttribute('disabled');
+                $makeSelect.val(makeId || '');
+                if (id) {
+                    onMakeSelect(modelId);
+                }
+            },
+            error: appHandleError
+        })
+    };
+
+    const onMakeSelect = (modelId) => {
+        $.ajax({
+            url: `${HOST}/model/byMakeId/${$makeSelect.val()}`,
+            type: "GET",
+            success: res => {
+                $modelSelect.html('<option disabled selected>Select model</option>');
+                for (const model of res) {
+                    $modelSelect.append(`<option value="${model.id}">${model.name}</option>`)
+                }
+                $modelSelect[0].removeAttribute('disabled');
+                $modelSelect.val(modelId || '');
+            },
+            error: appHandleError
+        })
+    };
+
+    const onSendClick = e => {
+        const id = $sendBtn.attr('data-id');
+
+        const data = {
+            year: $yearInput.val(),
+            price: $priceInput.val(),
+            volume: $volumeInput.val(),
+            rating: $ratingInput.val(),
+            description: $descriptionInput.val(),
+            makeId: $makeSelect.val(),
+            modelId: $modelSelect.val(),
+            cityId: $citySelect.val(),
+            bodyTypeId: $bodyTypeSelect.val(),
+            driverTypeId: $driverTypeSelect.val(),
+            fuelId: $fuelSelect.val(),
+            gearBoxId: $gearboxSelect.val(),
+            power: $powerInput.val(),
+            carConditionNew: $condNew.val(),
+            abs: $abs.val(),
+            leatherSeats: $leatherSeats.val(),
+            colorId: getCheckedColorId()
+        };
+
+        const request = {
+            contentType: 'application/json',
+            success: () => {
+                // clearForm();
+                getCars();
+            },
+            error: appHandleError
+        };
+        appGetBase64($imgInput[0].files[0])
+            .then(img => data.photo = img)
+            .catch()
+            .finally(_ => {
+                if (id) {
+                    $.ajax({
+                        ...request,
+                        url: `${HOST}/car?id=${id}`,
+                        type: 'PUT',
+                        data: JSON.stringify(data)
+                    })
+                } else {
+                    $.ajax({
+                    ...request,
+                    url: `${HOST}/car`,
+                    type: 'POST',
+                    data: JSON.stringify(data)
+                    })
+                 }
+            })
+        };
+
+    M.textareaAutoResize($descriptionInput);
+
+    const onUpdateClick = e => {
+        $('html, body').animate({
+            scrollTop:
+            $('#create-form').position().top}, 'slow');
+        // $('html, body').animate({
+        //         scrollTop: 0
+        //     }, 200);
+        const id = e.target.getAttribute('data-id');
+        $.ajax({
+            url: `${HOST}/car/one/${id}`,
+            type: 'GET',
+            success: res => {
+                $yearInput.val(res.year);
+                $priceInput.val(res.price);
+                $volumeInput.val(res.volume);
+                $ratingInput.val(res.rating);
+                $descriptionInput.val(res.description);
+                $countrySelect.val(res.modelResponse.makeResponse.countryId);
+                $citySelect.val(res.cityResponse ? res.cityResponse.id : '');
+                $bodyTypeSelect.val(res.bodyTypeResponse ? res.bodyTypeResponse.id : '');
+                $driverTypeSelect.val(res.driverTypeResponse ? res.driverTypeResponse.id : '');
+                $fuelSelect.val(res.fuelResponse ? res.fuelResponse.id : '');
+                $gearboxSelect.val(res.gearboxResponse ? res.gearboxResponse.id : '');
+                getCheckedColorId();
+                // getCheckedColorId();
+                // $('.color-radio').val(res.colorResponse ? res.colorResponse.id : '');
+                $powerInput.val(res.power);
+                $abs.val(res.abs);
+                $leatherSeats.val(res.leatherSeats);
+                $condNew.val(res.carConditionNew);
+                // $colorInput.val(res.colorResponse.id);
+                onCountrySelect(res.modelResponse.makeId,res.modelResponse.id);
+
+
+                // onMakeSelect(res.modelResponse.id);
+                // onCountrySelect(res.modelResponse.makeId,res.modelResponse.id);
+                $sendBtn.attr('data-id', id);
+                // $gearboxSelect.val(res.gearboxResponse.id);
+
+                // onMakeSelect(res.modelResponse.id);
+                // onMakeSelect(res.modelResponse.id);
+                // onCountrySelect(res.modelResponse.makeId, res.modelResponse.id);
+                // $makeSelect.val(res.modelResponse.id)
+                // $createAddOption.slideToggle();
+            },
+            error: appHandleError
+        })
+    };
+
+    const onDeleteClick = e => {
+        const id = e.target.getAttribute('data-id');
+        $.ajax ({
+            url: `${HOST}/car?id=${id}`,
+            type:'DELETE',
+            success: res => {
+                // getCountries();
+                // getBodyTypes();
+                getCars();
+            },
+            error: appHandleError
+        })
+    };
+
+    $condNew.change(function() {
+        let carConditionNew = false;
+        if (this.checked) {
+            carConditionNew = true;
+        }
+         $condNew.val(carConditionNew);
+    });
+
+    $abs.change(function() {
+        let currentAbs = false;
+        if (this.checked) {
+            currentAbs = true;
+        }
+         $abs.val(currentAbs);
+    });
+
+    $leatherSeats.change(function() {
+        let currentLeatherSeats = false;
+        if (this.checked) {
+            currentLeatherSeats = true;
+        }
+         $leatherSeats.val(currentLeatherSeats);
+    });
+
+
+    const clearForm = _ => {
+        $yearInput.val('');
+        $priceInput.val('');
+        $volumeInput.val('');
+        $ratingInput.val('');
+        $descriptionInput.val('');
+        $modelSelect.val('');
+        $modelSelect.attr('disabled','true');
+        $makeSelect.val('');
+        $citySelect.val('');
+        $makeSelect.attr('disabled','true',);
+        $countrySelect.val('');
+        $bodyTypeSelect.val('');
+        $driverTypeSelect.val('');
+        $fuelSelect.val('');
+        $gearboxSelect.val('');
+        $imgInput.val('');
+        $imgTextInput.val('');
+        $powerInput.val('');
+        // $condNew.attr('checked','false');
+        // $condNew.removeAttr('checked');
+        // $colorInput.val('');
+        $sendBtn.attr('data-id','');
+    };
+
+    $(`#clear-btn`).click(clearForm);
+    $('.btn-add').click(e => {
+        $createAddOption.slideToggle();
+    });
+
+    $(document).ready(function(){
+        $('.parallax').parallax();
+        $('select').formSelect();
+        $('.collapsible').collapsible();
+    });
+
+    $countrySelect.change(onCountrySelect);
+    $makeSelect.change(onMakeSelect);
+    // $carConditionNew.change(onCheckboxSelect);
+    $sendBtn.click(onSendClick);
+    getColors();
+    getCountries();
+    getCities();
+    getFuels();
+    getBodyTypes();
+    getDriverTypes();
+    getGearboxes();
+    getCars();
+</script>
+<script>
+
+    // $(document).ready(function(){
+    //     $('select').formSelect();
+    // });
+    // $(document).ready(function() {
+    //
+    // });
+
+
+</script>
+
+</body>
+</html>

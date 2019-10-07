@@ -45,7 +45,8 @@ public class CarResponse {
 //         modelId = car.getModel().getId();
 
          modelResponse = new ModelResponse(car.getModel());
-         if (car.getBodyType() == null) {
+
+         if (car.getBodyType() != null) {
              bodyTypeResponse = new BodyTypeResponse(car.getBodyType());
          }
          if (car.getCity() != null) {
@@ -59,6 +60,9 @@ public class CarResponse {
          }
          if (car.getFuel() != null) {
              fuelResponse = new FuelResponse(car.getFuel());
+         }
+         if (car.getGearbox() != null) {
+             gearboxResponse = new GearboxResponse(car.getGearbox());
          }
 
     }

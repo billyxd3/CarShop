@@ -21,8 +21,8 @@ public class City {
 
     private String name;
 
-    @ManyToOne
-    private Country country;
+//    @ManyToOne
+//    private Country country;
 
     @OneToOne(mappedBy = "city")
     private Address address;

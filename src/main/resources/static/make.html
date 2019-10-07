@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<style>
+    h5 {
+        color:white;
+    }
+</style>
+
+<body>
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+        <div id='stars3'></div>
+        <div id='stars'></div>
+        <div class="nav-wrapper ">
+            <div class="container">
+                <!--                <a href="#" class="brand-logo"><img src="https://dynamic.brandcrowd.com/asset/logo/ad41d6a4-3f72-4e21-b766-385e3a4277ea/logo?v=4&text=AutoBan" height="64" width="80" ></a>-->
+                <a href="#" data-target="mobile-demo" class="
+            sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="center-align" id="nav-mobile" class="right hide-on-med-and-down">
+                    <h4 class="left-align">Admin Page</h4>
+                    <li><a href="/admincar">Car</a></li>
+                    <li><a href="/admincountry">Country</a></li>
+                    <li><a href="/admincity">City</a></li>
+                    <li><a href="/adminmake">Make</a></li>
+                    <li><a href="/adminmodel">Model</a></li>
+                    <li><a href="/adminbodytype">BodyType</a></li>
+                    <li><a href="/admincolor">Color</a></li>
+                    <li><a href="/admindrivertype">Driver Type</a></li>
+                    <li><a href="/adminfuel">Fuel</a></li>
+                    <li><a href="/admingearbox">Gearbox</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="img/cityporsche.jpeg">
+    </div>
+</div>
+<div class="card-panel lighten-2" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
+    <h5>Make</h5>
+</div>
+<div class="create-form" style="display: none">
+    <div>
+        <!--        <label for="create-form_country-select">Country</label>-->
+        <select id="create-form_country-select" class="browser-default waves-light btn" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);"></select>
+    </div>
+    <div>
+        <label for="create-form_make-input"></label>
+        <input  id="create-form_make-input" placeholder="Make">
+    </div>
+    <div>
+        <button id="create-form_send-btn" class="btn waves-effect waves-light" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">Send</button>
+        <button id="clear-btn" class="btn waves-effect waves-light" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">Clear</button>
+        <div class="hint"></div>
+    </div>
+</div>
+<!--<div class="makes">-->
+
+<!--</div>-->
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Country</td>
+        <td>Make</td>
+        <td>Actions <a class="btn-add btn-floating btn-large waves-effect waves-light " style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);"><i class="material-icons">+</i></a></td>
+    </tr>
+    </thead>
+    <tbody class="makes"></tbody>
+</table>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="js/utils.js" ></script>
+
+<!-- Compiled and minified JavaScript -->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    const HOST = 'http://localhost:8080';
+    const $form = $('.create-form');
+    const $makeInput = $('#create-form_make-input');
+    const $sendBtn = $('#create-form_send-btn');
+    const $createContainer = $('.create-container');
+    const $countrySelect = $(`#create-form_country-select`);
+    const $makes = $('.makes');
+    const $hint = $(`.hint`);
+
+    const appendMake = make => {
+        $makes.append(`
+            <tr>
+                <td>${make.id}</td>
+                <td>${make.countryResponse.name}</td>
+                <td>${make.name}</td>
+                <td><button class="update-btn btn waves-effect waves-light" data-id="${make.id}" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">UPDATE</button></td>
+                <td><button class="delete-btn btn waves-effect waves-light" data-id="${make.id}" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">DELETE</button></td>
+             </tr>
+        `)
+    };
+
+    const getMakes = () => {
+        $.ajax({
+            url: `${HOST}/make`,
+            type: `GET`,
+            success: res => {
+                $makes.html('');
+                for (const make of res) {
+                    appendMake(make);
+                }
+                $('.update-btn').click(onUpdateClick);
+                $('.delete-btn').click(onDeleteClick);
+            },
+            error: appHandleError
+        })
+    };
+    const getCountries = () => {
+        $.ajax({
+            url: `${HOST}/country`,
+            type: `GET`,
+            success: res => {
+                $countrySelect.html('<option disabled selected>Select country</option>');
+                for (const country of res) {
+                    $countrySelect.append(`<option value="${country.id}">${country.name}</option>`);
+                }
+            },
+            error: appHandleError
+        })
+    };
+
+    $('.btn-add').click(e => {
+        $form.slideToggle();
+    });
+
+    const onSendClick = e => {
+        const id = $sendBtn.attr('data-id');
+        const request = {
+            data: JSON.stringify({
+                name: $makeInput.val(),
+                countryId: $countrySelect.val()
+            }),
+            contentType: 'application/json',
+            success: () => {
+                clearForm();
+                getCountries();
+                getMakes();
+            },
+            error: appHandleError
+        };
+        if (id) {
+            $.ajax({
+                ...request,
+                url: `${HOST}/make?id=${id}`,
+                type: 'PUT'
+            })
+        } else {
+            $.ajax({
+                ...request,
+                url: `${HOST}/make`,
+                type: 'POST'
+            })
+        }
+    };
+
+    const onUpdateClick = e => {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 200);
+        const id = e.target.getAttribute('data-id');
+        $.ajax({
+            url: `${HOST}/make/one/${id}`,
+            type: 'GET',
+            success: res => {
+                $makeInput.val(res.name)
+                $countrySelect.val(res.countryId);
+                $sendBtn.attr('data-id',id);
+            },
+            error: appHandleError
+        })
+    };
+
+    const onDeleteClick = e => {
+        const id = e.target.getAttribute('data-id');
+        $.ajax({
+            url: `${HOST}/make?id=${id}`,
+            type: 'DELETE',
+            success: res => {
+                getMakes();
+            },
+            error: appHandleError,
+        });
+    };
+
+    const clearForm = () => {
+        $makeInput.val('')
+        $countrySelect.val('Select country');
+        $sendBtn.attr('data-id','');
+        $hint.html('');
+    };
+
+    $(`#clear-btn`).click(clearForm);
+    // $('.update-btn').click(onUpdateClick);
+    $sendBtn.click(onSendClick);
+    getCountries();
+    getMakes();
+
+</script>
+<script>
+    $('#create-form_make-input').keypress(e => {
+        console.log("sdas");
+        $.ajax({
+            // url: `http://localhost:8080/country/byName?value=${$(e.target).val()}`,
+            url: `http://localhost:8080/make/byName?value=${e.target.value}`,
+            type: 'GET',
+            success: res => {
+                const $hint = $('.hint');
+                $hint.html('');
+                for (const make of res) {
+                    $hint.append(`<p>${make.id}. ${make.name}</p>`)
+                    // $hint.append(`<p>${country.id}. ${country.name}</p>`)
+                }
+            },
+            error: err => {
+                console.log(err);
+                alert('Something went wrong')
+            }
+        })
+    });
+</script>
+<script>
+    // setInterval(function() {
+    //     $('#create-form_country-select').;
+    // }, 9000);
+    // $(document).ready(function(){
+    //     setTimeout(function(){
+    //         $('select').material_select();
+    //     },1000000);
+    // });
+
+    // setTimeout(function(){
+    //     $('.datepicker').pickadate();
+    //     },2000)
+    $(document).ready(function() {
+        $('select').formSelect();
+    });
+
+    //     $(document).ready(function(){
+    //         $('select').not('.disabled').formSelect();
+    //     });
+    // window.setTimeout(()=>{
+    //     console.log("setTimeOut is completed.");
+    //     this.createForm = [
+    //         {value:1,name:"Option 1"},
+    //         {value:2,name:"Option 2"},
+    //         {value:3,name:"Option 3"}
+    //     ]
+    // },10000);
+
+</script>
+<script>
+    $(document).ready(function() {
+        $('.parallax').parallax();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Catalog</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/carCatalog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="js/utils.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js'></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js'></script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo.js'></script>
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+<ul class="sidenav" id="mobile-demo">
+<div id='stars2'></div>
+    <div id="stars5"></div>
+    <li><a class="white-text" href="/index">Home</a></li>
+    <li><a class="white-text" href="/catalog">Product</a></li>
+    <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
+    <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
+</ul>
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+    <div id='stars'></div>
+        <div class="nav-wrapper ">
+            <div class="container">
+                <a href="/index" class="brand-logo"><img src= >Auto Ban Shop</a>
+                <a href="/index" data-target="mobile-demo" class="
+            sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/index">Home</a></li>
+                    <li><a class="tooltipped btn-floating btn-small indigo darken-4" href="/catalog"><i class="fa fa-car"></i></a></li>
+                    <li><a href="/index#about-section">About us</a></li>
+                    <li><a class="modal-trigger" href="#modal1">Sign in</a></li>
+                    <li><a class="modal-trigger" href="#modal2">Log in</a></li>
+                    <li><a href="https://www.instagram.com/?hl=ru" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a></li>
+                    <li><a href="https://www.facebook.com" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a></li>
+                    <li><a href="https://twitter.com/?lang=ru" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div id='stars3'></div>
+<div class="row">
+    <div class="col s12 m7 l8 xl10 ">
+        <h2 class="header white-text"></h2>
+        <div class="container-product">
+        </div>
+    </div>
+</div>
+
+<div id="modal1" class="modal" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
+    <div id="stars4"></div>
+    <div class="modal-content">
+        <div id="stars6"></div>
+        <div class="row">
+            <form  class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons cyan-text teal-text text-lighten-1 prefix">account_circle</i>
+                        <input type="text" class="validate" placeholder="Username" id="username">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix">phone</i>
+                            <input type="tel" class="validate" placeholder="Phone" id="phone" pattern="[0-9]{10}"
+                                   required>
+                            <small class="col xl offset-xl4 white-text">Format: 1234567890</small>
+                            <label for="phone">Phone</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix" >lock</i>
+                            <input type="password" class="password" placeholder="Password" id="password">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix">mail</i>
+                            <input type="email" class="validate" placeholder="email" id="email">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-footer" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Apply</a>
+    </div>
+</div>
+
+<div id="modal2" class="modal" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
+    <div id="stars7"></div>
+    <div class="modal-content">
+        <div id="stars9"></div>
+        <div class="row">
+            <form  class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons cyan-text teal-text text-lighten-1 prefix">account_circle</i>
+                        <input type="text" class="validate white-text" placeholder="Username" id="log-username">
+                        <label for="log-username">Username</label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix">lock</i>
+                            <input type="password" class="log-password white-text" placeholder="Password" id="log-password">
+                            <label for="log-password">Password</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-footer" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Apply</a>
+    </div>
+</div>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer content</h5>
+                <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet corporis distinctio, eius fuga id optio quae quisquam reiciendis sequi tempora, vel vero vitae voluptate voluptatem?</p>
+            </div>
+            <div class="col l4 offset-12 s12">
+                <h5 class="white-text">Connect us</h5>
+                <ul>
+                    <li><a href="#!" class="grey-text text-lighten-3"></a>Facebook</li>
+
+                    <li><a href="#!" class="grey-text text-lighten-3"></a>Instagram</li>
+                    <li><a href="#!" class="grey-text text-lighten-3"></a>Twitter</li>
+                    <li><a href="#!" class="grey-text text-lighten-3"></a>Linked In</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            @2019 Online Car Shop AutoBan
+            <a href="#!" class="grey-text text-lighten-4 right">More links</a>
+        </div>
+    </div>
+</footer>
+<script>
+    const searchParams = new URLSearchParams(window.location.search);
+    const setDataFromApi = (data) => {
+        // $(`.header`).html(data.modelResponse.makeResponse.name + " " + data.modelResponse.name + " " + data.year);
+        $(`.container-product`).append(`
+        <div class="row">
+
+                        <div class="col  offset-s12  offset-m1  offset-l1  xl6">
+                        <div class="card hoverable">
+                        <div class="card-image">
+                           <img class="item-photo" src="http://localhost:8080/images/${data.photo}">
+
+                        </div>
+                        </div>
+
+                        </div>
+
+             <div class="col  offset-s12  offset-m1  offset-l1 xl6" ">
+             <div class="card" >
+
+
+                       <div class="card-stacked">
+                            <div class="card-content">
+                            <h2 class="white-text">${data.modelResponse.makeResponse.name + " " + data.modelResponse.name + " " + data.year}</h2>
+                            <h3 class="grey-text">Price: <p class="item-price green-text">${data.price}$</p> </h3>
+
+                            <p class="item-volume grey-text">Volume: </p>
+                            <p class="flow-text white-text">${data.volume} L </p>
+                            <p class="item-text flow-text white-text">${data.description}</p>
+                            <p class="item-rating white-text">Rating: ${data.rating}</p>
+                            <p>Rating</p>
+                            <p></p>
+                            <span class="1 fa fa-star checked"></span>
+                            <span class="2 fa fa-star checked"></span>
+                            <span class="3 fa fa-star checked"></span>
+                            <span class="4 fa fa-star checked"></span>
+                            <span class="5 fa fa-star checked"></span>
+                            <p class="grey-text">ABS: </p>
+                            <p class="item-abs flow-text white-text">${data.abs}</p>
+                            <p class="grey-text">Leather Seats: </p>
+                            <p class="item-leatherSeats flow-text white-text">${data ? data.leatherSeats : ''}</p>
+                            <p class="grey-text">Car New: </p>
+                            <p class="item-carConditionNew flow-text white-text">${data ? data.carConditionNew : ''}</p>
+                            <p class="grey-text">Body Type: </p>
+                            <p class="item-bodyType flow-text white-text">${data.bodyTypeResponse ? data.bodyTypeResponse.name : ''}</p>
+                            <p class="grey-text">Driver Type: </p>
+                            <p class="item-driverType flow-text white-text">${data.driverTypeResponse ? data.driverTypeResponse.name : ''}</p>
+                            <p class="grey-text">Fuel: </p>
+                            <p class="item-fuel flow-text white-text">${data.fuelResponse ? data.fuelResponse.name : ''}</p>
+                            <p class="grey-text">Gearbox: </p>
+                            <p class="item-gearbox flow-text white-text">${data.gearboxResponse ? data.gearboxResponse.name : ''}</p>
+                            <p class="grey-text">Color: </p>
+                            <p class="item-color flow-text white-text">${data.colorResponse ? data.colorResponse.name : ''}</p>
+                            <p class="grey-text">Power: </p>
+                            <p class="item-power flow-text white-text">${data.power} Horse power</p>
+
+                         </div>
+                        </div>
+                </div>
+                </div>
+                </div>
+<div class="card-action">
+             <a class="btn waves-effect waves-light btn-large" type="submit" href="/catalog">Back</a>
+                         <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Buy
+    <i class="material-icons right">send</i>
+  </button>
+
+                         </div>
+                         </div>
+              </div>
+        `)
+    };
+    $.ajax ({
+        url: `http://localhost:8080/car/one/${searchParams.get('id')}`,
+        type: 'GET',
+        success: res => {
+            setDataFromApi(res);
+        },
+        error: console.log()
+    })
+
+
+    // const getRat = () => {
+    //     console.log("asdsadsa");
+    //     $.ajax({
+    //         url: `${HOST}/car?page=0&size=1000`,
+    //         type: 'GET',
+    //         success: car => {
+    //             $cars.html('');
+    //             let i = 0;
+    //             while (i < car.rating) {
+    //                 appendRat();
+    //                 i++;
+    //             }
+    //
+    //         },
+    //         error: appHandleError
+    //     })
+    // };
+// appendRat();
+
+</script>
+<script>
+    $(document).ready(function() {
+        $('.sidenav').sidenav();
+        $('.modal').modal({
+            dismissible: false,
+            opacity: .7,
+            inDuration: 500,
+            outDuration: 500,
+            endingTop: '25%'
+        });
+    });
+</script>
+</body>
+</html>

@@ -21,17 +21,22 @@ public class CarSpecification implements Specification<Car> {
     private Boolean leatherSeats;
     private Integer minPower;
     private Integer maxPower;
-    private List<Long> bodyTypeIds;
-    private List<Long> driverTypeIds;
-    private List<Long> fuelIds;
-    private List<Long> gearboxIds;
-    private List<Long> colorIds;
-//    private Long colorId;
+    private Long bodyTypeId;
+//    private Long bodyTypeId;
+//    private List<Long> bodyTypeIds;
+    private Long driverTypeId;
+//    private List<Long> driverTypeIds;
+    private Long fuelId;
+//    private List<Long> fuelIds;
+    private Long gearboxId;
+//    private List<Long> gearboxIds;
+    private Long colorId;
+//    private List<Long> colorIds;
     private Long modelId;
     private Long makeId;
     private Long countryId;
     private Long cityId;
-    private List<Long> favoriteCarsIds;
+    private List<Long> favoriteCarsId;
 
     public CarSpecification(CarCriteriaRequest carCriteria) {
         this.minYear = carCriteria.getMinYear();
@@ -45,16 +50,16 @@ public class CarSpecification implements Specification<Car> {
         this.leatherSeats = carCriteria.getLeatherSeats();
         this.minPower = carCriteria.getMinPower();
         this.maxPower = carCriteria.getMaxPower();
-        this.bodyTypeIds = carCriteria.getBodyTypeIds();
-        this.driverTypeIds = carCriteria.getDriverTypeIds();
-        this.fuelIds = carCriteria.getFuelIds();
-        this.gearboxIds = carCriteria.getGearboxIds();
-        this.colorIds = carCriteria.getColorIds();
+        this.bodyTypeId = carCriteria.getBodyTypeId();
+        this.driverTypeId = carCriteria.getDriverTypeId();
+        this.fuelId = carCriteria.getFuelId();
+        this.gearboxId = carCriteria.getGearboxId();
+        this.colorId = carCriteria.getColorId();
         this.modelId = carCriteria.getModelId();
         this.makeId = carCriteria.getMakeId();
         this.countryId = carCriteria.getCountryId();
         this.cityId = carCriteria.getCityId();
-        this.favoriteCarsIds = carCriteria.getFavoriteCarsIds();
+//        this.favoriteCarsIds = carCriteria.getFavoriteCarsIds();
     }
 
     @Override
@@ -70,12 +75,22 @@ public class CarSpecification implements Specification<Car> {
         predicates.add(findByCondition(root,cb,abs,"abs"));
         predicates.add(findByCondition(root,cb,leatherSeats,"leatherSeats"));
         predicates.add(findByCountryAndMakeAndModel(root,cb));
-        predicates.add(findByCountryAndCity(root,cb));
-        predicates.add(findByIds(root,cb,driverTypeIds,"driverType"));
-        predicates.add(findByIds(root,cb,bodyTypeIds,"bodyType"));
-        predicates.add(findByIds(root,cb,fuelIds,"fuel"));
-        predicates.add(findByIds(root,cb,gearboxIds,"gearbox"));
-        predicates.add(findByIds(root,cb,colorIds,"color"));
+//        predicates.add(findByCountryAndCity(root,cb));
+//        predicates.add(findByCountry(root,cb));
+        predicates.add(findByCity(root,cb));
+        predicates.add(findByDriverType(root,cb));
+        predicates.add(findByBodyTypeId(root,cb));
+        predicates.add(findByDriverType(root,cb));
+        predicates.add(findByFuelId(root,cb));
+        predicates.add(findByColorId(root,cb));
+        predicates.add(findByGearboxId(root,cb));
+
+//        predicates.add(findByIds(root,cb,driverTypeIds,"driverType"));
+//        predicates.add(findByIds(root,cb,driverTypeIds,"driverType"));
+//        predicates.add(findByIds(root,cb,bodyTypeIds,"bodyType"));
+//        predicates.add(findByIds(root,cb,fuelIds,"fuel"));
+//        predicates.add(findByIds(root,cb,gearboxIds,"gearbox"));
+//        predicates.add(findByIds(root,cb,colorIds,"color"));
 
         return cb.and(predicates.toArray(new Predicate[0]));
     }
@@ -88,13 +103,13 @@ public class CarSpecification implements Specification<Car> {
 //        }
 //    }
 
-    private Predicate findByIds(Root<Car> root, CriteriaBuilder cb,List<Long> valueIds,String name) {
-        if (valueIds != null) {
-            return root.join(name).get("id").in(valueIds);
-        } else {
-           return cb.conjunction();
-        }
-    }
+//    private Predicate findByIds(Root<Car> root, CriteriaBuilder cb,List<Long> valueIds,String name) {
+//        if (valueIds != null) {
+//            return root.join(name).get("id").in(valueIds);
+//        } else {
+//           return cb.conjunction();
+//        }
+//    }
 
 //    private Predicate findByColorIds(Root<Car> root, CriteriaBuilder cb) {
 //        if (colorIds != null) {
@@ -105,15 +120,63 @@ public class CarSpecification implements Specification<Car> {
 //    }
 //
 //
-//    private Predicate findByDriverType(Root<Car> root, CriteriaBuilder cb) {
-//        if (driverTypeId != null) {
-//            Join<Car,DriverType> joinDriverType = root.join("driverType");
-//            return cb.equal(joinDriverType.get("id"),driverTypeId);
+//    private Predicate findByCountry(Root<Car> root, CriteriaBuilder cb) {
+//        if (countryId != null) {
+//            Join<Car,Country> joinCountry = root.join("country");
+//            return cb.equal(joinCountry.get("id"),countryId);
 //        } else {
 //            return cb.conjunction();
 //        }
 //    }
-
+    private Predicate findByCity(Root<Car> root, CriteriaBuilder cb) {
+        if (cityId != null) {
+            Join<Car,City> joinCity = root.join("city");
+            return cb.equal(joinCity.get("id"),cityId);
+        } else {
+            return cb.conjunction();
+        }
+    }
+    private Predicate findByBodyTypeId(Root<Car> root, CriteriaBuilder cb) {
+        if (bodyTypeId != null) {
+            Join<Car,BodyType> joinBodyType = root.join("bodyType");
+            System.out.println("fdasdsadsadsa");
+            return cb.equal(joinBodyType.get("id"),bodyTypeId);
+        } else {
+            return cb.conjunction();
+        }
+    }
+    private Predicate findByDriverType(Root<Car> root, CriteriaBuilder cb) {
+        if (driverTypeId != null) {
+            Join<Car,DriverType> joinDriverType = root.join("driverType");
+            return cb.equal(joinDriverType.get("id"),driverTypeId);
+        } else {
+            return cb.conjunction();
+        }
+    }
+    private Predicate findByFuelId(Root<Car> root, CriteriaBuilder cb) {
+        if (fuelId != null) {
+            Join<Car,Fuel> joinFuel = root.join("fuel");
+            return cb.equal(joinFuel.get("id"),fuelId);
+        } else {
+            return cb.conjunction();
+        }
+    }
+    private Predicate findByGearboxId(Root<Car> root, CriteriaBuilder cb) {
+        if (gearboxId != null) {
+            Join<Car,Gearbox> joinGearbox = root.join("gearbox");
+            return cb.equal(joinGearbox.get("id"),gearboxId);
+        } else {
+            return cb.conjunction();
+        }
+    }
+    private Predicate findByColorId(Root<Car> root, CriteriaBuilder cb) {
+        if (colorId != null) {
+            Join<Car,Color> joinColor = root.join("color");
+            return cb.equal(joinColor.get("id"),colorId);
+        } else {
+            return cb.conjunction();
+        }
+    }
 
     private Predicate findByCountryAndCity(Root<Car> root,CriteriaBuilder cb) {
         if (cityId != null) {
@@ -149,11 +212,11 @@ public class CarSpecification implements Specification<Car> {
 
     private Predicate findByVolume(Root<Car> root, CriteriaBuilder cb) {
         if (minVolume != null && maxVolume != null) {
-            return cb.between(root.get("price"), minVolume, maxVolume);
+            return cb.between(root.get("volume"), minVolume, maxVolume);
         } else if (minVolume != null) {
-            return cb.ge(root.get("price"), minVolume);
+            return cb.ge(root.get("volume"), minVolume);
         } else if (maxVolume != null) {
-            return cb.le(root.get("price"), maxVolume);
+            return cb.le(root.get("volume"), maxVolume);
         } else {
             return cb.conjunction();
         }

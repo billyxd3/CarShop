@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<style>
+    h5 {
+        color:white;
+    }
+    nav {
+        background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    }
+</style>
+<body>
+<div class="navbar-fixed">
+    <nav class="nav-extended">
+        <div class="nav-wrapper ">
+            <div id='stars3'></div>
+            <div id='stars'></div>
+            <div class="container">
+<!--                <a href="#" class="brand-logo"><img src="https://dynamic.brandcrowd.com/asset/logo/ad41d6a4-3f72-4e21-b766-385e3a4277ea/logo?v=4&text=AutoBan" height="64" width="80" ></a>-->
+                <a href="#" data-target="mobile-demo" class="
+            sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="center-align" id="nav-mobile" class="right hide-on-med-and-down">
+                    <h4 class="left-align">Admin Page</h4>
+                    <li><a href="/admincar">Car</a></li>
+                    <li><a href="/admincountry">Country</a></li>
+                    <li><a href="/admincity">City</a></li>
+                    <li><a href="/adminmake">Make</a></li>
+                    <li><a href="/adminmodel">Model</a></li>
+                    <li><a href="/adminbodytype">BodyType</a></li>
+                    <li><a href="/admincolor">Color</a></li>
+                    <li><a href="/admindrivertype">Driver Type</a></li>
+                    <li><a href="/adminfuel">Fuel</a></li>
+                    <li><a href="/admingearbox">Gearbox</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!--<div class="card-panel black">-->
+<!--    <h5>Admin Page</h5>-->
+<!--</div>-->
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="img/model%20X.jpg" alt="">
+    </div>
+</div>
+<!--<div class="section white">-->
+<!--    <div class="row container">-->
+<!--        <h1 class="header">Lorem</h1>-->
+<!--        <p class="grey-text text-darken-3 lighten-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea est et expedita, facere harum illum ipsum labore laudantium, modi officiis placeat reiciendis similique ut vel voluptas! Cumque eligendi expedita illum, inventore maxime nemo officia optio, perspiciatis reiciendis soluta velit veniam!</p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer content</h5>
+                <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet corporis distinctio, eius fuga id optio quae quisquam reiciendis sequi tempora, vel vero vitae voluptate voluptatem?</p>
+            </div>
+            <div class="col l4 offset-12 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a href="#!" class="grey-text text-lighten-3"></a>Link 1</li>
+                    <li><a href="#!" class="grey-text text-lighten-3"></a>Link 2</li>
+                    <li><a href="#!" class="grey-text text-lighten-3"></a>Link 3</li>
+                    <li><a href="#!" class="grey-text text-lighten-3"></a>Link 4</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            @2019 Online Car Shop AutoBan
+            <a href="#!" class="grey-text text-lighten-4 right">More links</a>
+        </div>
+    </div>
+</footer>
+<!--<div class="parallax-container">-->
+<!--    <div class="parallax">-->
+<!--        <img src="img/7.jpg" alt="">-->
+<!--    </div>-->
+<!--</div>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+        $('.parallax').parallax();
+        });
+</script>
+</body>
+</html>

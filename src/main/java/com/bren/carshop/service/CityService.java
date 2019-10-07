@@ -19,8 +19,8 @@ public class CityService {
     @Autowired
     private CityRepository cityRepository;
 
-    @Autowired
-    private CountryService countryService;
+//    @Autowired
+//    private CountryService countryService;
 
     public void save(CityRequest request) {
         cityRepository.save(cityRequestToCity(null,request));
@@ -53,7 +53,21 @@ public class CityService {
             city = new City();
         }
         city.setName(request.getName());
-        city.setCountry(countryService.findOne(request.getCountryId()));
+//        city.setCountry(countryService.findOne(request.getCountryId()));
         return city;
     }
+
+    public List<CityResponse> findAllByName(String value) {
+        return cityRepository.findAllByNameLike('%' + value + '%', Sort.by("name")).stream()
+                .map(CityResponse::new).collect(Collectors.toList());
+    }
+
+    public CityResponse findOneResponse(Long id) {
+        return new CityResponse(findOne(id));
+    }
+
+//    public List<CityResponse> findAllByCountryId(Long countryId) {
+//        return cityRepository.findAllByCountryId(countryId).stream().map(CityResponse::new).collect(Collectors.toList());
+//    }
+
 }

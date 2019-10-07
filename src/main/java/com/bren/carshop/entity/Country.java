@@ -27,8 +27,8 @@ public class Country {
     @OneToMany(mappedBy = "country")
     private List<Make> makes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "country")
-    private List<City> cities = new ArrayList<>();
+//    @OneToMany(mappedBy = "country")
+//    private List<City> cities = new ArrayList<>();
 
 //    @OneToOne
 //    private User user;

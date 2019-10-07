@@ -26,6 +26,21 @@ public class CityController {
         return cityService.findAll(fieldName);
     }
 
+//    @GetMapping("/byCountryId/{countryId}")
+//    public List<CityResponse> findAllByCountryId(@PathVariable Long countryId) {
+//        return cityService.findAllByCountryId(countryId);
+//    }
+
+    @GetMapping("/one/{id}")
+    public CityResponse findOne(@PathVariable Long id) {
+        return cityService.findOneResponse(id);
+    }
+
+    @GetMapping("/byName")
+    public List<CityResponse> findAllByName(@RequestParam String value) {
+        return cityService.findAllByName(value);
+    }
+
     @PutMapping
     public void update(@RequestBody CityRequest request, Long id) {
         cityService.update(request,id);

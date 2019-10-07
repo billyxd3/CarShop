@@ -10,8 +10,6 @@ public class CityResponse {
 
     private Long id;
     private String name;
-    private Long countryId;
-    private CountryResponse countryResponse;
 
     public CityResponse(City city) {
         if (city == null) {
@@ -19,7 +17,5 @@ public class CityResponse {
         }
         id = city.getId();
         name = city.getName();
-        countryId = city.getCountry().getId();
-        countryResponse = new CountryResponse(city.getCountry());
     }
 }

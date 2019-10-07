@@ -15,6 +15,7 @@ public class BodyTypeResponse {
         if (bodyType == null) {
             bodyType = new BodyType();
         }
+
         id = bodyType.getId();
         name = bodyType.getName();
     }

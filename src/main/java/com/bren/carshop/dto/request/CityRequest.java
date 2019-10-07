@@ -11,5 +11,5 @@ public class CityRequest {
 
     private String name;
 
-    private Long countryId;
+//    private Long countryId;
 }
