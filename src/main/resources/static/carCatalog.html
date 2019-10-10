@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Car Catalog</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo3.png" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -26,12 +27,20 @@
 <ul class="sidenav" id="mobile-demo">
 <div id='stars2'></div>
     <div id="stars5"></div>
-    <li><a class="page-username white-text lighten-5 flow-text" href="#!" style="font-style:oblique;font-weight:bold;font-size: 200%">Guest</a></li>
-    <li><a class="white-text" href="/index">Home</a></li>
-    <li><a class="white-text" href="/catalog">Product</a></li>
+    <li><div class="user-view">
+        <div class="background">
+            <img src="http://placehold.it/1024x512/454545">
+        </div>
+        <a href="#user"><img class="circle" src="img/user2.png"></a>
+        <a href="#name"><span class="mob-username white-text name">Guest</span></a>
+    </div></li>
     <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
     <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
     <li><a class="log-out white-text" href="#!">Log Out</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="white-text" href="#">Home</a></li>
+    <li><a class="white-text" href="/catalog">Product</a></li>
+    <li><a class="white-text" href="/index#about-section">About us</a></li>
 </ul>
 <div class="navbar-fixed">
     <nav class="nav-extended">
@@ -151,6 +160,9 @@
         <a href="#!" class="login-btn modal-action modal-close waves-effect waves-green btn">Log in</a>
     </div>
 </div>
+
+<div class="rating-star">
+</div>
 <footer class="page-footer">
     <div class="container">
         <div class="row">
@@ -194,7 +206,7 @@
 
                         </div>
 
-             <div class="col  offset-s12  offset-m1  offset-l1 xl6" ">
+             <div class="col s12 offset-s12  offset-m1  offset-l1 xl6" ">
              <div class="card" >
 
 
@@ -239,10 +251,17 @@
                 </div>
                 </div>
 <div class="card-action">
-             <a class="btn waves-effect waves-light btn-large" type="submit" href="/catalog">Back</a>
-                         <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Buy
-    <i class="material-icons right">send</i>
-  </button>
+            <div class="row">
+                <div>
+                    <a class="waves-effect waves-light btn-large" href="/catalog">Back</a>
+                    <a id="buy-phone" class="waves-effect waves-light btn-large" href="tel:123-456-7890">Call to Buy</a>
+                <div class="row">
+                    <div>
+                        <a class="flow-text white-text " href="tel:123-456-7890">tel:123-456-7890</a>
+                    </div>
+                </div>
+            </div>
+</div>
 
                          </div>
                          </div>
@@ -264,16 +283,20 @@
         console.log(catUserName);
         // $('.page-username').html(catUserName);
         $('.page-username').html(catUserName ? catUserName : 'Guest');
+        $('.mob-username').html(catUserName ? catUserName : 'Guest');
     };
 
     const onLogOutClick = () => {
         localStorage.clear();
         $('.page-username').html('Guest');
+        $('.mob-username').html('Guest');
         $('.admin-page').html('');
     };
 
     $('.log-out').click(onLogOutClick);
     getProperties();
+
+
 
 </script>
 <script>

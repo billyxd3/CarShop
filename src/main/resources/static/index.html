@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <!--Import Google Icon Font-->
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo3.png" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -33,13 +34,22 @@
     <div id="stars5"></div>
 <div id='stars2'></div>
 <!--    <div id="stars8"></div>-->
-    <li><a class="page-username white-text lighten-5 flow-text" href="#!" style="font-style:oblique;font-weight:bold;font-size: 200%">Guest</a></li>
-    <li><a class="white-text" href="#">Home</a></li>
-    <li><a class="white-text" href="/catalog">Product</a></li>
-    <li><a class="white-text" href="#about-section">About us</a></li>
+    <li><div class="user-view">
+        <div class="background">
+            <img src="http://placehold.it/1024x512/454545">
+        </div>
+        <a href="#user"><img class="circle" src="img/user2.png"></a>
+        <a href="#name"><span class="mob-username white-text name">Guest</span></a>
+        <a href="#email"><span class="mob-phone white-text email"></span></a>
+        <a href="#email"><span class="mob-email white-text email"></span></a>
+    </div></li>
     <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
     <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
     <li><a class="log-out white-text" href="#!">Log Out</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="white-text" href="#">Home</a></li>
+    <li><a class="white-text" href="/catalog">Product</a></li>
+    <li><a class="white-text" href="#about-section">About us</a></li>
 </ul>
 <div id='stars'></div>
 <div class="navbar">
@@ -55,10 +65,11 @@
             <a href="/index" data-target="mobile-demo" class="
             sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a id="about-nav" class="white-text" href="#about-section">About us</a></li>
+<!--                <li><a id="about-nav" class="white-text" href="#about-section">About us</a></li>-->
                 <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
                 <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
                 <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/index"><i class="fas fa-home"></i></a></li>
+                <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/#about-section"><i class="fas fa-info-circle"></i></a></li>
                 <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/catalog"><i class="fa fa-car"></i></a></li>
                 <li><a class="admin-page flow-text white-text" href="/adminpage" style="display: none; font-weight:bold">Admin Page</a></li>
                 <li><a href="https://www.instagram.com/?hl=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Instagram">
@@ -70,7 +81,7 @@
                 <li><a href="https://twitter.com/?lang=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Twitter">
                     <i class="fab fa-twitter"></i>
                 </a></li>
-                <li><a class="page-username white-text flow-text" href="#!" style="font-style:oblique;font-weight:bold">Guest</a></li>
+                <li><a class="page-username indigo-text flow-text darken-5" href="#!" style="font-style:oblique;font-weight:bold">Guest</a></li>
                 <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-user-circle" style="size: 100px"></i></a></li>
                 <li><a class="log-out white-text" href="#!">Log Out</a></li>
                 <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-door-open"></i></a></li>
@@ -297,7 +308,7 @@
         $('.login-btn').click(() => {
             const req = {
                 username: $('.log-username').val(),
-                password: $('.log-password').val()
+                password: $('.log-password').val(),
             };
             $.ajax({
                 url: 'http://localhost:8080/user/login',
@@ -307,12 +318,18 @@
                 success: res => {
                     localStorage.setItem('sec-token', res.token);
                     localStorage.setItem('sec-user', res.username);
+                    localStorage.setItem('sec-userRole', res.userRole);
+                    // localStorage.setItem('sec-email',res.email);
+                    // localStorage.setItem('sec-phoneNumber',res.phoneNumber);
                     $('.page-username').html(`${res.username}`);
+                    $('.mob-username').html(`${res.username}`);
+                    // $('.mob-email').html(`${res.email}`);
+                    // $('.mob-phone').html(`${res.phoneNumber}`);
                     console.log("sadsadsadsa");
                     console.log(res.userRole);
                     if (res.userRole == 'ROLE_ADMIN') {
                         console.log('dsadsadsadsadsa');
-                        $('.admin-page').slideToggle();
+                        $('.admin-page').show();
                     }
                 },
                 error: e => {
@@ -336,7 +353,12 @@
                 success: res => {
                     localStorage.setItem('sec-token', res.token);
                     localStorage.setItem('sec-user', res.username);
+                    localStorage.setItem('sec-email',res.email);
+                    localStorage.setItem('sec-phoneNumber',res.phoneNumber);
                     $('.page-username').html(`${res.username}`);
+                    $('.mob-username').html(`${res.username}`);
+                    // $('.mob-email').html(`${res.email}`);
+                    // $('.mob-phone').html(`${res.phoneNumber}`);
                 },
                 error: e => {
                     console.log(e);
@@ -346,16 +368,29 @@
         });
 
         const onLogOutClick = () => {
+            $('.log-username').val(''),
+            $('.log-password').val(''),
             localStorage.clear();
             $('.page-username').html('Guest');
-            $('.admin-page').html('');
+            $('.mob-username').html('Guest');
+            // $('.mob-phone').html('');
+            // $('.mob-email').html('');
+            $('.admin-page').hide();
         };
 
         const getProperties = () => {
             localStorage.getItem('sec-token');
             let catUserName = localStorage.getItem('sec-user');
-            console.log(catUserName);
+            let adminCompare = localStorage.getItem('sec-userRole');
+            // let phone = localStorage.getItem('sec-phoneNumber');
+            // let email = localStorage.getItem('sec-email');
+            if (adminCompare == 'ROLE_ADMIN') {
+                $('.admin-page').show();
+            }
             $('.page-username').html(catUserName ? catUserName : 'Guest');
+            $('.mob-username').html(catUserName ? catUserName : 'Guest');
+            // $('.mob-phone').html(phone ? phone : '');
+            // $('.mob-email').html(email ? email : '');
         };
 
         $('.log-out').click(onLogOutClick);

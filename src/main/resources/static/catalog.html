@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Catalog</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo3.png" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -15,13 +16,20 @@
 <body>
 <ul class="sidenav" id="mobile-demo">
     <div id='stars2'></div>
-    <li><a class="page-username white-text lighten-5 flow-text" href="#!" style="font-style:oblique;font-weight:bold;font-size: 200%">Guest</a></li>
-    <li><a class="white-text" href="/index">Home</a></li>
-    <li><a class="white-text" href="/catalog">Product</a></li>
-    <li><a class="white-text" href="#">About us</a></li>
+    <li><div class="user-view">
+        <div class="background">
+            <img src="http://placehold.it/1024x512/454545">
+        </div>
+        <a href="#user"><img class="circle" src="img/user2.png"></a>
+        <a href="#name"><span class="mob-username white-text name">Guest</span></a>
+    </div></li>
     <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
     <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
     <li><a class="log-out white-text" href="#!">Log Out</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="white-text" href="/index">Home</a></li>
+    <li><a class="white-text" href="/catalog">Product</a></li>
+    <li><a class="white-text" href="/index#about-section">About us</a></li>
 </ul>
 <div class="navbar-fixed">
     <nav class="nav-extended">
@@ -377,7 +385,7 @@
                         <p class="item-text flow-text white-text">${car.description}</p>
                     </div>
                     <div class="card-action">
-                    <a class="btn waves-effect waves-light" type="submit" href="/item?id=${car.id}"><i class="material-icons right">info_outline</i>Details</a>
+                    <a class="btn waves-effect waves-light" href="/item?id=${car.id}"><i class="material-icons right">info_outline</i>Details</a>
                     </div>
                 </div>
             </div>
@@ -646,6 +654,7 @@
                 localStorage.setItem('sec-token', res.token);
                 localStorage.setItem('sec-user', res.username);
                 $('.page-username').html(`${res.username}`);
+                $('.mob-username').html(`${res.username}`);
             },
             error: e => {
                 console.log(e);
@@ -670,6 +679,7 @@
                 localStorage.setItem('sec-token', res.token);
                 localStorage.setItem('sec-user', res.username);
                 $('.page-username').html(`${res.username}`);
+                $('.mob-username').html(`${res.username}`);
             },
             error: e => {
                 console.log(e);
@@ -681,6 +691,7 @@
     const onLogOutClick = () => {
         localStorage.clear();
         $('.page-username').html('Guest');
+        $('.mob-username').html('Guest');
         $('.admin-page').html('');
     };
 
@@ -692,6 +703,7 @@
         console.log(catUserName);
         // $('.page-username').html(catUserName);
         $('.page-username').html(catUserName ? catUserName : 'Guest');
+        $('.mob-username').html(catUserName ? catUserName : 'Guest');
     };
 
     $(document).ready(function() {
