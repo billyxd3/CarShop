@@ -33,11 +33,13 @@
     <div id="stars5"></div>
 <div id='stars2'></div>
 <!--    <div id="stars8"></div>-->
+    <li><a class="page-username white-text lighten-5 flow-text" href="#!" style="font-style:oblique;font-weight:bold;font-size: 200%">Guest</a></li>
     <li><a class="white-text" href="#">Home</a></li>
     <li><a class="white-text" href="/catalog">Product</a></li>
     <li><a class="white-text" href="#about-section">About us</a></li>
     <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
     <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
+    <li><a class="log-out white-text" href="#!">Log Out</a></li>
 </ul>
 <div id='stars'></div>
 <div class="navbar">
@@ -53,21 +55,25 @@
             <a href="/index" data-target="mobile-demo" class="
             sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a class="black-text" href="/index">Home</a></li>
-                <li><a class="tooltipped btn-floating btn-small indigo darken-4" href="/catalog"><i class="fa fa-car"></i></a></li>
-                <li><a id="about-nav" class="black-text" href="#about-section">About us</a></li>
-                <li><a class="modal-trigger black-text" href="#modal1">Sign in</a></li>
-                <li><a class="modal-trigger black-text" href="#modal2">Log in</a></li>
-                <li><a class="black-text" href="/adminpage">Admin Page</a></li>
-                <li><a href="https://www.instagram.com/?hl=ru" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Instagram">
+                <li><a id="about-nav" class="white-text" href="#about-section">About us</a></li>
+                <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
+                <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
+                <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/index"><i class="fas fa-home"></i></a></li>
+                <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/catalog"><i class="fa fa-car"></i></a></li>
+                <li><a class="admin-page flow-text white-text" href="/adminpage" style="display: none; font-weight:bold">Admin Page</a></li>
+                <li><a href="https://www.instagram.com/?hl=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a></li>
-                <li><a href="https://www.facebook.com" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Facebook">
+                <li><a href="https://www.facebook.com" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Facebook">
                     <i class="fab fa-facebook"></i>
                 </a></li>
-                <li><a href="https://twitter.com/?lang=ru" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Twitter">
+                <li><a href="https://twitter.com/?lang=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Twitter">
                     <i class="fab fa-twitter"></i>
                 </a></li>
+                <li><a class="page-username white-text flow-text" href="#!" style="font-style:oblique;font-weight:bold">Guest</a></li>
+                <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-user-circle" style="size: 100px"></i></a></li>
+                <li><a class="log-out white-text" href="#!">Log Out</a></li>
+                <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-door-open"></i></a></li>
             </ul>
         </div>
         </div>
@@ -168,13 +174,13 @@
                <div class="row">
                    <div class="input-field col s6">
                        <i class="material-icons cyan-text teal-text text-lighten-1 prefix">account_circle</i>
-                       <input type="text" class="validate" placeholder="Username" id="username">
+                       <input type="text" class="signin-username validate white-text" placeholder="Username" id="username">
                        <label for="username">Username</label>
                    </div>
                    <div class="row">
                        <div class="input-field col s6">
                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix">phone</i>
-                           <input type="tel" class="validate" placeholder="Phone" id="phone" pattern="[0-9]{10}"
+                           <input type="tel" class="phone validate white-text" placeholder="Phone" id="phone" pattern="[0-9]{10}"
                                   required>
                            <small class="col xl offset-xl4 white-text">Format: 1234567890</small>
                            <label for="phone">Phone</label>
@@ -183,14 +189,14 @@
                    <div class="row">
                        <div class="input-field col s12">
                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix" >lock</i>
-                           <input type="password" class="password" placeholder="Password" id="password">
+                           <input type="password" class="signin-password white-text" placeholder="Password" id="password">
                            <label for="password">Password</label>
                        </div>
                    </div>
                    <div class="row">
                        <div class="input-field col s12">
-                           <i class="material-icons cyan-text teal-text text-lighten-1 prefix">mail</i>
-                           <input type="email" class="validate" placeholder="email" id="email">
+                           <i class="email material-icons cyan-text teal-text text-lighten-1 prefix">mail</i>
+                           <input type="email" class="validate white-text" placeholder="email" id="email">
                            <label for="email">Email</label>
                         </div>
                     </div>
@@ -200,7 +206,8 @@
     </div>
 
     <div class="modal-footer" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Apply</a>
+        <a href="#" class="close-btn modal-action modal-close waves-effect waves-green btn">Close</a>
+        <a href="#!" class="signin-btn modal-action modal-close waves-effect waves-green btn">Sign in</a>
     </div>
 </div>
 
@@ -213,7 +220,7 @@
                <div class="row">
                    <div class="input-field col s6">
                        <i class="material-icons cyan-text teal-text text-lighten-1 prefix">account_circle</i>
-                       <input type="text" class="validate white-text" placeholder="Username" id="log-username">
+                       <input type="text" class="log-username validate white-text" placeholder="Username" id="log-username">
                        <label for="log-username">Username</label>
                    </div>
                    <div class="row">
@@ -229,7 +236,8 @@
     </div>
 
     <div class="modal-footer" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Apply</a>
+        <a href="#" class="close-btn modal-action modal-close waves-effect waves-green btn">Close</a>
+        <a href="#!" class="login-btn modal-action modal-close waves-effect waves-green btn">Log in</a>
     </div>
 </div>
 
@@ -285,6 +293,74 @@
                 scrollTop: $('#about-section').position().top}, 'slow');
         };
         $('#about-nav').click(onAboutUsClick);
+
+        $('.login-btn').click(() => {
+            const req = {
+                username: $('.log-username').val(),
+                password: $('.log-password').val()
+            };
+            $.ajax({
+                url: 'http://localhost:8080/user/login',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(req),
+                success: res => {
+                    localStorage.setItem('sec-token', res.token);
+                    localStorage.setItem('sec-user', res.username);
+                    $('.page-username').html(`${res.username}`);
+                    console.log("sadsadsadsa");
+                    console.log(res.userRole);
+                    if (res.userRole == 'ROLE_ADMIN') {
+                        console.log('dsadsadsadsadsa');
+                        $('.admin-page').slideToggle();
+                    }
+                },
+                error: e => {
+                    console.log(e);
+                    alert('security error');
+                }
+            })
+        });
+        $('.signin-btn').click(() => {
+            const req = {
+                username: $('.signin-username').val(),
+                password: $('.signin-password').val(),
+                email: $('.email').val(),
+                phoneNumber: $('.phone').val()
+            };
+            $.ajax({
+                url: 'http://localhost:8080/user/register',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(req),
+                success: res => {
+                    localStorage.setItem('sec-token', res.token);
+                    localStorage.setItem('sec-user', res.username);
+                    $('.page-username').html(`${res.username}`);
+                },
+                error: e => {
+                    console.log(e);
+                    alert('security error');
+                }
+            })
+        });
+
+        const onLogOutClick = () => {
+            localStorage.clear();
+            $('.page-username').html('Guest');
+            $('.admin-page').html('');
+        };
+
+        const getProperties = () => {
+            localStorage.getItem('sec-token');
+            let catUserName = localStorage.getItem('sec-user');
+            console.log(catUserName);
+            $('.page-username').html(catUserName ? catUserName : 'Guest');
+        };
+
+        $('.log-out').click(onLogOutClick);
+
+        getProperties();
 
 </script>
 </body>

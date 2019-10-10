@@ -19,7 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String username;
 
     private String password;
@@ -27,6 +27,9 @@ public class User {
     private String email;
 
     private String phoneNumber;
+
+    @Column(nullable = false)
+    private UserRole userRole;
 
 //    @OneToOne(mappedBy = "user")
 //    private Country country;

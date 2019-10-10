@@ -26,10 +26,12 @@
 <ul class="sidenav" id="mobile-demo">
 <div id='stars2'></div>
     <div id="stars5"></div>
+    <li><a class="page-username white-text lighten-5 flow-text" href="#!" style="font-style:oblique;font-weight:bold;font-size: 200%">Guest</a></li>
     <li><a class="white-text" href="/index">Home</a></li>
     <li><a class="white-text" href="/catalog">Product</a></li>
     <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
     <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
+    <li><a class="log-out white-text" href="#!">Log Out</a></li>
 </ul>
 <div class="navbar-fixed">
     <nav class="nav-extended">
@@ -41,19 +43,23 @@
             sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/index">Home</a></li>
-                    <li><a class="tooltipped btn-floating btn-small indigo darken-4" href="/catalog"><i class="fa fa-car"></i></a></li>
+                    <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/catalog"><i class="fa fa-car"></i></a></li>
                     <li><a href="/index#about-section">About us</a></li>
                     <li><a class="modal-trigger" href="#modal1">Sign in</a></li>
                     <li><a class="modal-trigger" href="#modal2">Log in</a></li>
-                    <li><a href="https://www.instagram.com/?hl=ru" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Instagram">
+                    <li><a href="https://www.instagram.com/?hl=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a></li>
-                    <li><a href="https://www.facebook.com" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Facebook">
+                    <li><a href="https://www.facebook.com" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Facebook">
                         <i class="fab fa-facebook"></i>
                     </a></li>
-                    <li><a href="https://twitter.com/?lang=ru" class="tooltipped btn-floating btn-small indigo darken-4" data-position="bottom" data-tooltip="Twitter">
+                    <li><a href="https://twitter.com/?lang=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a></li>
+                    <li><a class="page-username white-text flow-text" href="#!" style="font-style:oblique;font-weight:bold">Guest</a></li>
+                    <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-user-circle" style="size: 100px"></i></a></li>
+                    <li><a class="log-out white-text" href="#!">Log Out</a></li>
+                    <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-door-open"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -62,7 +68,8 @@
 
 <div id='stars3'></div>
 <div class="row">
-    <div class="col s12 m7 l8 xl10 ">
+<!--    <div class="col s12 m7 l8 xl10 ">-->
+    <div>
         <h2 class="header white-text"></h2>
         <div class="container-product">
         </div>
@@ -78,13 +85,13 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons cyan-text teal-text text-lighten-1 prefix">account_circle</i>
-                        <input type="text" class="validate" placeholder="Username" id="username">
+                        <input type="text" class="signin-username validate white-text" placeholder="Username" id="username">
                         <label for="username">Username</label>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons cyan-text teal-text text-lighten-1 prefix">phone</i>
-                            <input type="tel" class="validate" placeholder="Phone" id="phone" pattern="[0-9]{10}"
+                            <input type="tel" class="phone validate white-text" placeholder="Phone" id="phone" pattern="[0-9]{10}"
                                    required>
                             <small class="col xl offset-xl4 white-text">Format: 1234567890</small>
                             <label for="phone">Phone</label>
@@ -93,14 +100,14 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons cyan-text teal-text text-lighten-1 prefix" >lock</i>
-                            <input type="password" class="password" placeholder="Password" id="password">
+                            <input type="password" class="signin-password white-text" placeholder="Password" id="password">
                             <label for="password">Password</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix">mail</i>
-                            <input type="email" class="validate" placeholder="email" id="email">
+                            <i class="email material-icons cyan-text teal-text text-lighten-1 prefix">mail</i>
+                            <input type="email" class="validate white-text" placeholder="email" id="email">
                             <label for="email">Email</label>
                         </div>
                     </div>
@@ -110,7 +117,8 @@
     </div>
 
     <div class="modal-footer" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Apply</a>
+        <a href="#" class="close-btn modal-action modal-close waves-effect waves-green btn">Close</a>
+        <a href="#!" class="signin-btn modal-action modal-close waves-effect waves-green btn">Sign in</a>
     </div>
 </div>
 
@@ -123,7 +131,7 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons cyan-text teal-text text-lighten-1 prefix">account_circle</i>
-                        <input type="text" class="validate white-text" placeholder="Username" id="log-username">
+                        <input type="text" class="log-username validate white-text" placeholder="Username" id="log-username">
                         <label for="log-username">Username</label>
                     </div>
                     <div class="row">
@@ -139,7 +147,8 @@
     </div>
 
     <div class="modal-footer" style="background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Apply</a>
+        <a href="#" class="close-btn modal-action modal-close waves-effect waves-green btn">Close</a>
+        <a href="#!" class="login-btn modal-action modal-close waves-effect waves-green btn">Log in</a>
     </div>
 </div>
 <footer class="page-footer">
@@ -175,7 +184,7 @@
         $(`.container-product`).append(`
         <div class="row">
 
-                        <div class="col  offset-s12  offset-m1  offset-l1  xl6">
+                        <div class="col s12 offset-m1  offset-l1  xl6">
                         <div class="card hoverable">
                         <div class="card-image">
                            <img class="item-photo" src="http://localhost:8080/images/${data.photo}">
@@ -249,25 +258,22 @@
         error: console.log()
     })
 
+    const getProperties = () => {
+        localStorage.getItem('sec-token');
+        let catUserName = localStorage.getItem('sec-user');
+        console.log(catUserName);
+        // $('.page-username').html(catUserName);
+        $('.page-username').html(catUserName ? catUserName : 'Guest');
+    };
 
-    // const getRat = () => {
-    //     console.log("asdsadsa");
-    //     $.ajax({
-    //         url: `${HOST}/car?page=0&size=1000`,
-    //         type: 'GET',
-    //         success: car => {
-    //             $cars.html('');
-    //             let i = 0;
-    //             while (i < car.rating) {
-    //                 appendRat();
-    //                 i++;
-    //             }
-    //
-    //         },
-    //         error: appHandleError
-    //     })
-    // };
-// appendRat();
+    const onLogOutClick = () => {
+        localStorage.clear();
+        $('.page-username').html('Guest');
+        $('.admin-page').html('');
+    };
+
+    $('.log-out').click(onLogOutClick);
+    getProperties();
 
 </script>
 <script>

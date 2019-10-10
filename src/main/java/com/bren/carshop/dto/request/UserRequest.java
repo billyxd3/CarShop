@@ -14,5 +14,9 @@ public class UserRequest {
     @Size(min = 3, max = 30)
     private String password;
 
+    private String email;
+
+    private String phoneNumber;
+
 
 }

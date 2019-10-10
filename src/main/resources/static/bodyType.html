@@ -100,6 +100,9 @@
         $.ajax({
             url: `${HOST}/bodyType?id=${id}`,
             type: `DELETE`,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+            },
             success: res => {
                 getBodyTypes()
             },
@@ -173,6 +176,9 @@
         const request = {
             url: `${HOST}/bodyType`,
             type: `POST`,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+            },
             contentType: 'application/json',
             data: JSON.stringify({
                 name: $nameInput.val()
@@ -195,13 +201,20 @@
             $.ajax({
                 ...request,
                 url: `${HOST}/bodyType`,
-                type: `POST`
+                type: `POST`,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+                },
+
             });
         } else {
             $.ajax({
                 ...request,
                 url: `${HOST}/bodyType?id=${id}`,
-                type: `PUT`
+                type: `PUT`,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+                },
             });
         }
     });

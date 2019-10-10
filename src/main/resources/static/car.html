@@ -3,7 +3,7 @@
 <head>
     <!--Let browser know website is optimized for mobile-->
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
-    <link rel="stylesheet" href= css/catalog.css>
+    <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
     <title>Car</title>
 </head>
@@ -485,6 +485,9 @@
                         ...request,
                         url: `${HOST}/car?id=${id}`,
                         type: 'PUT',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+                        },
                         data: JSON.stringify(data)
                     })
                 } else {
@@ -492,6 +495,9 @@
                     ...request,
                     url: `${HOST}/car`,
                     type: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+                        },
                     data: JSON.stringify(data)
                     })
                  }
@@ -554,6 +560,9 @@
         $.ajax ({
             url: `${HOST}/car?id=${id}`,
             type:'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+            },
             success: res => {
                 // getCountries();
                 // getBodyTypes();

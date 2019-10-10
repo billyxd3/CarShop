@@ -92,6 +92,9 @@
         $.ajax({
             url: `${HOST}/fuel?id=${id}`,
             type: `DELETE`,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+            },
             success: res => {
                 getFuels()
             },
@@ -165,6 +168,9 @@
         const request = {
             url: `${HOST}/fuel`,
             type: `POST`,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+            },
             contentType: 'application/json',
             data: JSON.stringify({
                 name: $nameInput.val()
@@ -187,13 +193,19 @@
             $.ajax({
                 ...request,
                 url: `${HOST}/fuel`,
-                type: `POST`
+                type: `POST`,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+                },
             });
         } else {
             $.ajax({
                 ...request,
                 url: `${HOST}/fuel?id=${id}`,
-                type: `PUT`
+                type: `PUT`,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+                },
             });
         }
     });

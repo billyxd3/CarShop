@@ -92,6 +92,9 @@
         $.ajax({
             url: `${HOST}/city?id=${id}`,
             type: `DELETE`,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+            },
             success: res => {
                 getCities();
             },
@@ -165,6 +168,9 @@
         const request = {
             url: `${HOST}/city`,
             type: `POST`,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+            },
             contentType: 'application/json',
             data: JSON.stringify({
                 name: $nameInput.val()
@@ -187,13 +193,19 @@
             $.ajax({
                 ...request,
                 url: `${HOST}/city`,
-                type: `POST`
+                type: `POST`,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+                },
             });
         } else {
             $.ajax({
                 ...request,
                 url: `${HOST}/city?id=${id}`,
-                type: `PUT`
+                type: `PUT`,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('sec-token')}`
+                },
             });
         }
     });
