@@ -1,3 +1,4 @@
+
 nav {
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 
@@ -16,6 +17,14 @@ header{
     }
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
 .sidenav {
     color: white;
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);

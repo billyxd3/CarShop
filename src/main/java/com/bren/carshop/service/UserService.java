@@ -54,9 +54,9 @@ public class UserService implements UserDetailsService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, request.getPassword()));
         UserRole userRole = user.getUserRole();
         String token = jwtTokenTool.createToken(username, userRole);
-//        String email = request.getEmail();
-//        String phoneNumber = request.getEmail();
-        return new AuthenticationResponse(username, token, userRole);
+        String email = request.getEmail();
+        String phoneNumber = request.getEmail();
+        return new AuthenticationResponse(username, token, userRole,email,phoneNumber);
     }
 
 

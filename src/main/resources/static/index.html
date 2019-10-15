@@ -71,11 +71,11 @@
                 <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/index"><i class="fas fa-home"></i></a></li>
                 <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/#about-section"><i class="fas fa-info-circle"></i></a></li>
                 <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/catalog"><i class="fa fa-car"></i></a></li>
-                <li><a class="admin-page flow-text white-text" href="/adminpage" style="display: none; font-weight:bold">Admin Page</a></li>
+                <li><a class="admin-page white-text" href="/adminpage" style="display: none; font-weight:bold">Admin Page</a></li>
                 <li><a href="https://www.instagram.com/?hl=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a></li>
-                <li><a href="https://www.facebook.com" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Facebook">
+                <li><a href="https://www.facebook.com" class="tooltipped btn-floating btn-small  indigo darken-4 hoverable" data-position="bottom" data-tooltip="Facebook">
                     <i class="fab fa-facebook"></i>
                 </a></li>
                 <li><a href="https://twitter.com/?lang=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Twitter">
@@ -191,7 +191,7 @@
                    <div class="row">
                        <div class="input-field col s6">
                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix">phone</i>
-                           <input type="tel" class="phone validate white-text" placeholder="Phone" id="phone" pattern="[0-9]{10}"
+                           <input type="tel" class="sign-phone validate white-text" placeholder="Phone" id="phone" pattern="[0-9]{10}"
                                   required>
                            <small class="col xl offset-xl4 white-text">Format: 1234567890</small>
                            <label for="phone">Phone</label>
@@ -207,7 +207,7 @@
                    <div class="row">
                        <div class="input-field col s12">
                            <i class="email material-icons cyan-text teal-text text-lighten-1 prefix">mail</i>
-                           <input type="email" class="validate white-text" placeholder="email" id="email">
+                           <input type="email" class="sign-email validate white-text" placeholder="email" id="email">
                            <label for="email">Email</label>
                         </div>
                     </div>
@@ -342,8 +342,8 @@
             const req = {
                 username: $('.signin-username').val(),
                 password: $('.signin-password').val(),
-                email: $('.email').val(),
-                phoneNumber: $('.phone').val()
+                email: $('.sign-email').val(),
+                phoneNumber: $('.sign-phone').val()
             };
             $.ajax({
                 url: 'http://localhost:8080/user/register',
@@ -357,8 +357,8 @@
                     localStorage.setItem('sec-phoneNumber',res.phoneNumber);
                     $('.page-username').html(`${res.username}`);
                     $('.mob-username').html(`${res.username}`);
-                    // $('.mob-email').html(`${res.email}`);
-                    // $('.mob-phone').html(`${res.phoneNumber}`);
+                    $('.mob-email').html(`${res.email}`);
+                    $('.mob-phone').html(`${res.phoneNumber}`);
                 },
                 error: e => {
                     console.log(e);
