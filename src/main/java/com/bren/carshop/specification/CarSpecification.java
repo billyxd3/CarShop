@@ -77,6 +77,8 @@ public class CarSpecification implements Specification<Car> {
         predicates.add(findByCountryAndMakeAndModel(root,cb));
 //        predicates.add(findByCountryAndCity(root,cb));
 //        predicates.add(findByCountry(root,cb));
+
+
         predicates.add(findByCity(root,cb));
         predicates.add(findByDriverType(root,cb));
         predicates.add(findByBodyTypeId(root,cb));
@@ -84,6 +86,7 @@ public class CarSpecification implements Specification<Car> {
         predicates.add(findByFuelId(root,cb));
         predicates.add(findByColorId(root,cb));
         predicates.add(findByGearboxId(root,cb));
+
 
 //        predicates.add(findByIds(root,cb,driverTypeIds,"driverType"));
 //        predicates.add(findByIds(root,cb,driverTypeIds,"driverType"));
@@ -139,7 +142,6 @@ public class CarSpecification implements Specification<Car> {
     private Predicate findByBodyTypeId(Root<Car> root, CriteriaBuilder cb) {
         if (bodyTypeId != null) {
             Join<Car,BodyType> joinBodyType = root.join("bodyType");
-            System.out.println("fdasdsadsadsa");
             return cb.equal(joinBodyType.get("id"),bodyTypeId);
         } else {
             return cb.conjunction();

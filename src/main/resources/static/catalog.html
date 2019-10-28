@@ -134,12 +134,14 @@
 
                     <label for="create-form_minPower">Min Power</label>
                     <p class = "range-field">
+<!--                        <input type = "range" id = "create-form_minPower" min = "0" max = "1300" />-->
                         <input type = "range" id = "create-form_minPower" min = "0" max = "1300" value="0"/>
                     </p>
                     </div>
                     <div class="col s6">
                         <label for="maxPower">Max Power</label>
                         <p class = "range-field">
+<!--                            <input type = "range" id = "maxPower" min = "0" max = "1300" />-->
                             <input type = "range" id = "maxPower" min = "0" max = "1300" value="1300"/>
                         </p>
                     </div>
@@ -381,11 +383,11 @@
                     <div class="card-content">
                         <h5 class="grey-text">Price: <p class="item-price green-text">${car.price}$</p> </h5>
                         <p class="item-volume grey-text">Fuel: </p>
-                        <p class="item-text flow-text white-text">${car.fuelResponse.name}</p>
+                        <p class="item-text flow-text white-text">${car.fuelResponse ? car.fuelResponse.name : 'Not Specified'}</p>
                         <p class="item-volume grey-text">Volume: </p>
                         <p class="flow-text white-text">${car.volume} L </p>
                         <p class="item-volume grey-text">Location: </p>
-                        <p class="item-text flow-text white-text">${car.cityResponse.name}</p>
+                        <p class="item-text flow-text white-text">${car.cityResponse ? car.cityResponse.name : 'Not Specified'}</p>
                     </div>
                     <div class="card-action">
                     <a class="btn waves-effect waves-light" href="/item?id=${car.id}"><i class="material-icons right">info_outline</i>Details</a>
