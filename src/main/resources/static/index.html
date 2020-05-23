@@ -43,7 +43,7 @@
         <a href="#email"><span class="mob-phone white-text email"></span></a>
         <a href="#email"><span class="mob-email white-text email"></span></a>
     </div></li>
-    <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
+    <li><a class="modal-trigger white-text" href="#modal1">Sign up</a></li>
     <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
     <li><a class="log-out white-text" href="#!">Log Out</a></li>
     <li><div class="divider"></div></li>
@@ -61,16 +61,21 @@
         <div class="nav-wrapper ">
             <div class="container">
 <!--            <a href="#" class="brand-logo"><img src="https://dynamic.brandcrowd.com/asset/logo/ad41d6a4-3f72-4e21-b766-385e3a4277ea/logo?v=4&text=AutoBan" height="64" width="80" ></a>-->
-            <a href="/index" class="brand-logo"><img src= >Auto Ban Shop</a>
+<!--            <a href="/index" class="brand-logo"><img src= >Auto Ban Shop</a>-->
             <a href="/index" data-target="mobile-demo" class="
             sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
 <!--                <li><a id="about-nav" class="white-text" href="#about-section">About us</a></li>-->
-                <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
+                <li><a class="modal-trigger white-text" href="#modal1">Sign up</a></li>
                 <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
-                <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/index"><i class="fas fa-home"></i></a></li>
-                <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/#about-section"><i class="fas fa-info-circle"></i></a></li>
-                <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/catalog"><i class="fa fa-car"></i></a></li>
+                <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/index" data-position="bottom" data-tooltip="Home">
+                    <i class="fas fa-home" ></i></a></li>
+                <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/#about-section"  data-position="bottom" data-tooltip="About us">
+                    <i class="fas fa-info-circle"></i>
+                </a></li>
+                <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/catalog"  data-position="bottom" data-tooltip="Catalog">
+                    <i class="fa fa-car"></i>
+                </a></li>
                 <li><a class="admin-page white-text" href="/adminpage" style="display: none; font-weight:bold">Admin Page</a></li>
                 <li><a href="https://www.instagram.com/?hl=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Instagram">
                     <i class="fab fa-instagram"></i>
@@ -84,7 +89,7 @@
                 <li><a class="page-username indigo-text flow-text darken-5" href="#!" style="font-style:oblique;font-weight:bold">Guest</a></li>
                 <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-user-circle" style="size: 100px"></i></a></li>
                 <li><a class="log-out white-text" href="#!">Log Out</a></li>
-                <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-door-open"></i></a></li>
+<!--                <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-door-open"></i></a></li>-->
             </ul>
         </div>
         </div>
@@ -282,6 +287,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
         $(document).ready(function(){
+            $('.tooltipped').tooltip();
             $('.sidenav').sidenav();
             $('.parallax').parallax();
             $('.modal').modal({

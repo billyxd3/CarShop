@@ -1,4 +1,5 @@
 package com.bren.carshop.controller;
+
 import com.bren.carshop.dto.request.CarCriteriaRequest;
 import com.bren.carshop.dto.request.CarRequest;
 import com.bren.carshop.dto.response.CarResponse;
@@ -7,6 +8,7 @@ import com.bren.carshop.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -16,8 +18,11 @@ import java.io.IOException;
 @RequestMapping("car")
 public class CarController {
 
-    @Autowired
-    private CarService carService;
+    private final CarService carService;
+
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
 
 
     @PostMapping
@@ -36,7 +41,7 @@ public class CarController {
             @RequestParam Integer size,
             @RequestParam(defaultValue = "id") String fieldId,
             @RequestParam(defaultValue = "ASC") Sort.Direction direction) {
-        return carService.findPage(page,size, fieldId, direction);
+        return carService.findPage(page, size, fieldId, direction);
     }
 
     @GetMapping("/filter")
@@ -46,7 +51,7 @@ public class CarController {
             @RequestParam Integer size,
             @RequestParam(defaultValue = "id") String fieldId,
             @RequestParam(defaultValue = "ASC") Sort.Direction direction) {
-        return carService.findPageByCriteria(carCriteriaRequest,page,size,fieldId,direction);
+        return carService.findPageByCriteria(carCriteriaRequest, page, size, fieldId, direction);
     }
 
     @GetMapping("/one/{id}")
@@ -56,7 +61,7 @@ public class CarController {
 
     @PutMapping
     public void update(@Valid @RequestBody CarRequest request, Long id) throws IOException {
-        carService.update(request,id);
+        carService.update(request, id);
     }
 
     @DeleteMapping

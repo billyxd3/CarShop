@@ -84,8 +84,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="js/utils.js" ></script>
 
-<!-- Compiled and minified JavaScript -->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
     const HOST = 'http://localhost:8080';
@@ -226,9 +224,7 @@
 </script>
 <script>
     $('#create-form_make-input').keypress(e => {
-        console.log("sdas");
         $.ajax({
-            // url: `http://localhost:8080/country/byName?value=${$(e.target).val()}`,
             url: `http://localhost:8080/make/byName?value=${e.target.value}`,
             type: 'GET',
             success: res => {
@@ -236,7 +232,6 @@
                 $hint.html('');
                 for (const make of res) {
                     $hint.append(`<p>${make.id}. ${make.name}</p>`)
-                    // $hint.append(`<p>${country.id}. ${country.name}</p>`)
                 }
             },
             error: err => {

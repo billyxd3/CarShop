@@ -17,7 +17,7 @@ public class FileService {
 
 
     public String saveFile(String request) throws IOException {
-        createDir(IMG_DIR);
+        createDir();
 
         String[] data = request.split(",");
         String metaInfo = data[0];
@@ -41,8 +41,8 @@ public class FileService {
         return metaInfo.split("/")[1].split(";")[0];
     }
 
-    private void createDir(String dir) {
-        File file = new File(dir);
+    private void createDir() {
+        File file = new File(FileService.IMG_DIR);
         if (!file.exists()) {
             file.mkdirs();
         }

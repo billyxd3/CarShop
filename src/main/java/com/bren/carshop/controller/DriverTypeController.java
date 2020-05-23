@@ -3,7 +3,6 @@ package com.bren.carshop.controller;
 import com.bren.carshop.dto.request.DriverTypeRequest;
 import com.bren.carshop.dto.response.DriverTypeResponse;
 import com.bren.carshop.service.DriverTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,9 +12,11 @@ import java.util.List;
 @RequestMapping("driverType")
 public class DriverTypeController {
 
+    private final DriverTypeService driverTypeService;
 
-    @Autowired
-    private DriverTypeService driverTypeService;
+    public DriverTypeController(DriverTypeService driverTypeService) {
+        this.driverTypeService = driverTypeService;
+    }
 
     @PostMapping
     public void save(@RequestBody DriverTypeRequest request) {
@@ -39,7 +40,7 @@ public class DriverTypeController {
 
     @PutMapping
     public void update(@RequestBody DriverTypeRequest request, Long id) {
-        driverTypeService.update(request,id);
+        driverTypeService.update(request, id);
     }
 
     @DeleteMapping

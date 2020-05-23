@@ -7,7 +7,6 @@ import com.bren.carshop.entity.UserRole;
 import com.bren.carshop.repository.UserRepository;
 import com.bren.carshop.security.JwtTokenTool;
 import com.bren.carshop.security.JwtUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,17 +19,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtTokenTool jwtTokenTool;
+    private final JwtTokenTool jwtTokenTool;
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
+
+    public UserService(UserRepository userRepository, AuthenticationManager authenticationManager, JwtTokenTool jwtTokenTool, BCryptPasswordEncoder encoder) {
+        this.userRepository = userRepository;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenTool = jwtTokenTool;
+        this.encoder = encoder;
+    }
 
     public AuthenticationResponse register(UserRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
@@ -56,9 +58,8 @@ public class UserService implements UserDetailsService {
         String token = jwtTokenTool.createToken(username, userRole);
         String email = request.getEmail();
         String phoneNumber = request.getEmail();
-        return new AuthenticationResponse(username, token, userRole,email,phoneNumber);
+        return new AuthenticationResponse(username, token, userRole, email, phoneNumber);
     }
-
 
 
     @Override
@@ -67,7 +68,7 @@ public class UserService implements UserDetailsService {
         return new JwtUser(user.getUsername(), user.getUserRole(), user.getPassword());
     }
 
-    private User findByUsername(String username)  {
+    private User findByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " not exists"));
     }
 

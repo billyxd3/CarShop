@@ -91,6 +91,9 @@
         <input id="create-form_volume-input" type="number" placeholder="Volume">
     </div>
     <div>
+        <input id="create-form_phone-input" type="number" placeholder="Phone Number">
+    </div>
+    <div>
         <input id="create-form_rating-input" type="number" placeholder="Rating">
     </div>
     <div>
@@ -170,7 +173,7 @@
     <li class="active">
         <div class="collapsible-header"><i class="material-icons">filter_drama</i>Cars Information</div>
         <div class="collapsible-body">
-            <table>
+            <table class="highlight">
                 <thead>
                 <tr>
                     <td>ID</td>
@@ -182,7 +185,7 @@
                     <td>PRICE</td>
                     <td>VOLUME</td>
                     <td>RATING</td>
-                    <td>DESCRIPTION</td>
+<!--                    <td>DESCRIPTION</td>-->
                     <td>POWER</td>
                     <td>CarCond</td>
                     <td>ABS</td>
@@ -227,6 +230,7 @@
     const $yearInput = $(`#create-form_year-input`);
     const $priceInput = $(`#create-form_price-input`);
     const $imgInput = $(`#create-form_image-input`);
+    const $phoneNumberInput = $(`#create-form_phone-input`);
     const $imgTextInput = $(`#create-form_textimg-input`);
     const $volumeInput = $(`#create-form_volume-input`);
     const $ratingInput = $(`#create-form_rating-input`);
@@ -261,7 +265,6 @@
             <td>${car.price}</td>
             <td>${car.volume}</td>
             <td>${car.rating}</td>
-            <td>${car.description}</td>
             <td>${car.power}</td>
             <td>${car.carConditionNew}</td>
             <td>${car.abs}</td>
@@ -300,7 +303,7 @@
             url: `${HOST}/color`,
             type: 'GET',
             success: res => {
-                $colors.val('');
+                $colors.val('');    3
                 for (const color of res) {
                     $colors.append(`
                         <p>
@@ -454,6 +457,7 @@
             year: $yearInput.val(),
             price: $priceInput.val(),
             volume: $volumeInput.val(),
+            phoneNumber: $phoneNumberInput.val(),
             rating: $ratingInput.val(),
             description: $descriptionInput.val(),
             makeId: $makeSelect.val(),
@@ -523,6 +527,7 @@
                 $yearInput.val(res.year);
                 $priceInput.val(res.price);
                 $volumeInput.val(res.volume);
+                $phoneNumberInput.val(res.phoneNumber),
                 $ratingInput.val(res.rating);
                 $descriptionInput.val(res.description);
                 $countrySelect.val(res.modelResponse.makeResponse.countryId);
@@ -603,6 +608,7 @@
         $yearInput.val('');
         $priceInput.val('');
         $volumeInput.val('');
+        $phoneNumberInput.val(''),
         $ratingInput.val('');
         $descriptionInput.val('');
         $modelSelect.val('');
@@ -611,7 +617,7 @@
         $citySelect.val('');
         $makeSelect.attr('disabled','true',);
         $countrySelect.val('');
-        $bodyTypeSelect.val('');
+        $bodyTypeSelect.val('')
         $driverTypeSelect.val('');
         $fuelSelect.val('');
         $gearboxSelect.val('');

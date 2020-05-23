@@ -6,7 +6,6 @@ import com.bren.carshop.entity.City;
 import com.bren.carshop.exception.HasDependenciesException;
 import com.bren.carshop.exception.NoMatchesException;
 import com.bren.carshop.repository.CityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +15,18 @@ import java.util.stream.Collectors;
 @Service
 public class CityService {
 
-    @Autowired
-    private CityRepository cityRepository;
+    private final CityRepository cityRepository;
 
-//    @Autowired
-//    private CountryService countryService;
+    public CityService(CityRepository cityRepository) {
+        this.cityRepository = cityRepository;
+    }
 
     public void save(CityRequest request) {
-        cityRepository.save(cityRequestToCity(null,request));
+        cityRepository.save(cityRequestToCity(null, request));
     }
 
     public void update(CityRequest request, Long id) {
-        cityRepository.save(cityRequestToCity(findOne(id),request));
+        cityRepository.save(cityRequestToCity(findOne(id), request));
     }
 
     public List<CityResponse> findAll(String fieldName) {
@@ -53,7 +52,6 @@ public class CityService {
             city = new City();
         }
         city.setName(request.getName());
-//        city.setCountry(countryService.findOne(request.getCountryId()));
         return city;
     }
 
@@ -66,8 +64,5 @@ public class CityService {
         return new CityResponse(findOne(id));
     }
 
-//    public List<CityResponse> findAllByCountryId(Long countryId) {
-//        return cityRepository.findAllByCountryId(countryId).stream().map(CityResponse::new).collect(Collectors.toList());
-//    }
 
 }

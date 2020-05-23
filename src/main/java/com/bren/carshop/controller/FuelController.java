@@ -3,7 +3,6 @@ package com.bren.carshop.controller;
 import com.bren.carshop.dto.request.FuelRequest;
 import com.bren.carshop.dto.response.FuelResponse;
 import com.bren.carshop.service.FuelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 @RequestMapping("fuel")
 public class FuelController {
 
-    @Autowired
-    private FuelService fuelService;
+    private final FuelService fuelService;
+
+    public FuelController(FuelService fuelService) {
+        this.fuelService = fuelService;
+    }
 
     @PostMapping
     public void save(@RequestBody FuelRequest request) {
@@ -38,7 +40,7 @@ public class FuelController {
 
     @PutMapping
     public void update(@RequestBody FuelRequest request, Long id) {
-        fuelService.update(request,id);
+        fuelService.update(request, id);
     }
 
     @DeleteMapping

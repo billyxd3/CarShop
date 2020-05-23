@@ -224,6 +224,19 @@ main {
     }
 }
 
+table.highlight>tbody>tr:hover {
+    background-color: rgba(194, 206, 23, 0.5);      /* whatever color you want */
+}
+table.highlight>thead>tr {
+    font-weight: bold;
+          /* whatever color you want */
+}
+table.highlight>tbody>tr {
+    color: black;                                     /* whatever color you want */
+}
+
+
+
 
 /*body {*/
 /*    !*height: 1000px;*!*/

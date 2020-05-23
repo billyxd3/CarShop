@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car, Long>, JpaSpecificationExecutor {
+public interface CarRepository extends JpaRepository<Car, Long>, JpaSpecificationExecutor<Car> {
 
     @Query("from Car c join c.model m join m.make ma where ma.id=:makeId")
     List<Car> findAllByMakeId(@Param("makeId") Long makeId);

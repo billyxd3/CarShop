@@ -2,9 +2,7 @@ package com.bren.carshop.controller;
 
 import com.bren.carshop.dto.request.BodyTypeRequest;
 import com.bren.carshop.dto.response.BodyTypeResponse;
-import com.bren.carshop.entity.BodyType;
 import com.bren.carshop.service.BodyTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +12,11 @@ import java.util.List;
 @RequestMapping("bodyType")
 public class BodyTypeController {
 
-    @Autowired
-    private BodyTypeService bodyTypeService;
+    private final BodyTypeService bodyTypeService;
+
+    public BodyTypeController(BodyTypeService bodyTypeService) {
+        this.bodyTypeService = bodyTypeService;
+    }
 
     @PostMapping
     public void save(@RequestBody BodyTypeRequest request) {

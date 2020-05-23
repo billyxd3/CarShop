@@ -97,40 +97,7 @@ public class CarSpecification implements Specification<Car> {
 
         return cb.and(predicates.toArray(new Predicate[0]));
     }
-//        private Predicate findFavoriteCarsByNameLike(Root<Car> root, CriteriaBuilder cb) {
-//        if (favoriteCarsIds == null) {
-//            return cb.conjunction();
-//        } else {
-//            Join<Car,User> joinUser = root.join("favoriteCars");
-//            return cb.in(joinUser.get("id")).in(favoriteCarsIds);
-//        }
-//    }
 
-//    private Predicate findByIds(Root<Car> root, CriteriaBuilder cb,List<Long> valueIds,String name) {
-//        if (valueIds != null) {
-//            return root.join(name).get("id").in(valueIds);
-//        } else {
-//           return cb.conjunction();
-//        }
-//    }
-
-//    private Predicate findByColorIds(Root<Car> root, CriteriaBuilder cb) {
-//        if (colorIds != null) {
-//            return root.join("color").get("id").in(colorIds);
-//        } else {
-//            return cb.conjunction();
-//        }
-//    }
-//
-//
-//    private Predicate findByCountry(Root<Car> root, CriteriaBuilder cb) {
-//        if (countryId != null) {
-//            Join<Car,Country> joinCountry = root.join("country");
-//            return cb.equal(joinCountry.get("id"),countryId);
-//        } else {
-//            return cb.conjunction();
-//        }
-//    }
     private Predicate findByCity(Root<Car> root, CriteriaBuilder cb) {
         if (cityId != null) {
             Join<Car,City> joinCity = root.join("city");
@@ -247,5 +214,40 @@ public class CarSpecification implements Specification<Car> {
             }
         }
     }
+
+    //        private Predicate findFavoriteCarsByNameLike(Root<Car> root, CriteriaBuilder cb) {
+//        if (favoriteCarsIds == null) {
+//            return cb.conjunction();
+//        } else {
+//            Join<Car,User> joinUser = root.join("favoriteCars");
+//            return cb.in(joinUser.get("id")).in(favoriteCarsIds);
+//        }
+//    }
+
+//    private Predicate findByIds(Root<Car> root, CriteriaBuilder cb,List<Long> valueIds,String name) {
+//        if (valueIds != null) {
+//            return root.join(name).get("id").in(valueIds);
+//        } else {
+//           return cb.conjunction();
+//        }
+//    }
+
+//    private Predicate findByColorIds(Root<Car> root, CriteriaBuilder cb) {
+//        if (colorIds != null) {
+//            return root.join("color").get("id").in(colorIds);
+//        } else {
+//            return cb.conjunction();
+//        }
+//    }
+//
+//
+//    private Predicate findByCountry(Root<Car> root, CriteriaBuilder cb) {
+//        if (countryId != null) {
+//            Join<Car,Country> joinCountry = root.join("country");
+//            return cb.equal(joinCountry.get("id"),countryId);
+//        } else {
+//            return cb.conjunction();
+//        }
+//    }
 
 }

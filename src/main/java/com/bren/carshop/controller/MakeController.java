@@ -3,7 +3,6 @@ package com.bren.carshop.controller;
 import com.bren.carshop.dto.request.MakeRequest;
 import com.bren.carshop.dto.response.MakeResponse;
 import com.bren.carshop.service.MakeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,8 +13,11 @@ import java.util.List;
 @RequestMapping("make")
 public class MakeController {
 
-    @Autowired
-    private MakeService makeService;
+    private final MakeService makeService;
+
+    public MakeController(MakeService makeService) {
+        this.makeService = makeService;
+    }
 
     @PostMapping
     public void save(@Valid @RequestBody MakeRequest request) {
@@ -56,8 +58,6 @@ public class MakeController {
     public void delete(Long id) {
         makeService.delete(id);
     }
-
-
 
 
 }

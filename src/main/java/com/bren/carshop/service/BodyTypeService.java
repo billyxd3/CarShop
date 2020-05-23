@@ -6,7 +6,6 @@ import com.bren.carshop.entity.BodyType;
 import com.bren.carshop.exception.HasDependenciesException;
 import com.bren.carshop.exception.NoMatchesException;
 import com.bren.carshop.repository.BodyTypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +15,18 @@ import java.util.stream.Collectors;
 @Service
 public class BodyTypeService {
 
-    @Autowired
-    private BodyTypeRepository bodyTypeRepository;
+    private final BodyTypeRepository bodyTypeRepository;
+
+    public BodyTypeService(BodyTypeRepository bodyTypeRepository) {
+        this.bodyTypeRepository = bodyTypeRepository;
+    }
 
     public void save(BodyTypeRequest request) {
-        bodyTypeRepository.save(bodyTypeRequestToBodyType(null,request));
+        bodyTypeRepository.save(bodyTypeRequestToBodyType(null, request));
     }
 
     public void update(BodyTypeRequest request, Long id) {
-        bodyTypeRepository.save(bodyTypeRequestToBodyType(findOne(id),request));
+        bodyTypeRepository.save(bodyTypeRequestToBodyType(findOne(id), request));
     }
 
     public List<BodyTypeResponse> findAll(String fieldName) {
@@ -42,7 +44,7 @@ public class BodyTypeService {
     }
 
     public BodyType findOne(Long id) {
-       return bodyTypeRepository.findById(id).orElseThrow(() -> new NoMatchesException("Body type with id" + id + "doesn`t exists"));
+        return bodyTypeRepository.findById(id).orElseThrow(() -> new NoMatchesException("Body type with id" + id + "doesn`t exists"));
     }
 
     public BodyType bodyTypeRequestToBodyType(BodyType bodyType, BodyTypeRequest request) {

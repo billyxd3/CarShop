@@ -34,8 +34,8 @@ public class User {
 //    @OneToOne(mappedBy = "user")
 //    private Country country;
 
-    @ManyToMany
-    private List<Car> favoriteCars = new ArrayList<>();
+//    @ManyToMany
+//    private List<Car> favoriteCars = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();

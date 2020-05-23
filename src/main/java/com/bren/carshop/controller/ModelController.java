@@ -1,10 +1,8 @@
 package com.bren.carshop.controller;
 
 import com.bren.carshop.dto.request.ModelRequest;
-import com.bren.carshop.dto.response.MakeResponse;
 import com.bren.carshop.dto.response.ModelResponse;
 import com.bren.carshop.service.ModelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -15,18 +13,16 @@ import java.util.List;
 @RequestMapping("model")
 public class ModelController {
 
-    @Autowired
-    private ModelService modelService;
+    private final ModelService modelService;
+
+    public ModelController(ModelService modelService) {
+        this.modelService = modelService;
+    }
 
     @PostMapping
     public void save(@Valid @RequestBody ModelRequest request) {
         modelService.save(request);
     }
-
-//    @GetMapping
-//    public List<ModelResponse> findAll() {
-//        return modelService.findAll();
-//    }
 
     @GetMapping
     public List<ModelResponse> findAll(@RequestParam(defaultValue = "id") String fieldName) {

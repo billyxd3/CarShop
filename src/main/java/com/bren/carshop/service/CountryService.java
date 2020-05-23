@@ -16,15 +16,18 @@ import java.util.stream.Collectors;
 @Service
 public class CountryService {
 
-    @Autowired
-    private CountryRepository countryRepository;
+    private final CountryRepository countryRepository;
+
+    public CountryService(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
+    }
 
     public void save(CountryRequest request) {
-        countryRepository.save(countryRequestToCountry(null,request));
+        countryRepository.save(countryRequestToCountry(null, request));
     }
 
     public void update(CountryRequest request, Long id) {
-        countryRepository.save(countryRequestToCountry(findOne(id),request));
+        countryRepository.save(countryRequestToCountry(findOne(id), request));
     }
 
     public CountryResponse findOneResponse(Long id) {
@@ -34,10 +37,6 @@ public class CountryService {
     public Country findOne(Long id) {
         return countryRepository.findById(id).orElseThrow(() -> new NoMatchesException(" with id " + id + " doesn`t exists"));
     }
-
-//    public Country findByIdAndName(Long id, String value) {
-//        return countryRepository.findAllByIdAndName(id,value);
-//    }
 
     private Country countryRequestToCountry(Country country, CountryRequest request) {
         if (country == null) {
@@ -52,7 +51,7 @@ public class CountryService {
         if (country.getMakes().isEmpty()) {
             countryRepository.delete(country);
         } else {
-           throw new HasDependenciesException("Can`t delete country with id \" + id + \" because it has dependencies");
+            throw new HasDependenciesException("Can`t delete country with id \" + id + \" because it has dependencies");
         }
     }
 

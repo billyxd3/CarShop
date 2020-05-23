@@ -1,13 +1,11 @@
 package com.bren.carshop.service;
 
 import com.bren.carshop.dto.request.ModelRequest;
-import com.bren.carshop.dto.response.MakeResponse;
 import com.bren.carshop.dto.response.ModelResponse;
 import com.bren.carshop.entity.Model;
 import com.bren.carshop.exception.HasDependenciesException;
 import com.bren.carshop.exception.NoMatchesException;
 import com.bren.carshop.repository.ModelRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,21 +15,19 @@ import java.util.stream.Collectors;
 @Service
 public class ModelService {
 
-    @Autowired
-    private ModelRepository modelRepository;
+    private final ModelRepository modelRepository;
 
-    @Autowired
-    private MakeService makeService;
+    private final MakeService makeService;
+
+    public ModelService(ModelRepository modelRepository, MakeService makeService) {
+        this.modelRepository = modelRepository;
+        this.makeService = makeService;
+    }
 
     public void save(ModelRequest request) {
         modelRepository.save(modelRequestToModel(null, request));
     }
 
-//    public void update(ModelRequest request, Long id) {
-//        Model model = findOne(id);
-//        model.setName(request.getName());
-//        modelRepository.save(model);
-//    }
     public void update(ModelRequest request, Long id) {
         modelRepository.save(modelRequestToModel(findOne(id),request));
 
@@ -45,11 +41,6 @@ public class ModelService {
             throw new HasDependenciesException("Can`t delete model with id " + id + " because it has dependencies");
         }
     }
-
-//    public List<ModelResponse> findAll() {
-//        return modelRepository.findAll().stream()
-//                .map(ModelResponse::new).collect(Collectors.toList());
-//    }
 
     public List<ModelResponse> findAllByMakeId(Long makeId) {
         return modelRepository.findAllByMakeId(makeId).stream().map(ModelResponse::new).collect(Collectors.toList());

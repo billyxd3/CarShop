@@ -2,9 +2,7 @@ package com.bren.carshop.controller;
 
 import com.bren.carshop.dto.request.GearboxRequest;
 import com.bren.carshop.dto.response.GearboxResponse;
-import com.bren.carshop.entity.Gearbox;
 import com.bren.carshop.service.GearboxService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +12,11 @@ import java.util.List;
 @RequestMapping("gearbox")
 public class GearboxController {
 
-    @Autowired
-    private GearboxService gearboxService;
+    private final GearboxService gearboxService;
+
+    public GearboxController(GearboxService gearboxService) {
+        this.gearboxService = gearboxService;
+    }
 
     @PostMapping
     public void save(@RequestBody GearboxRequest request) {
@@ -39,7 +40,7 @@ public class GearboxController {
 
     @PutMapping
     public void update(@RequestBody GearboxRequest request, Long id) {
-        gearboxService.update(request,id);
+        gearboxService.update(request, id);
     }
 
     @DeleteMapping

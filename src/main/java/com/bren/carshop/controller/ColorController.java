@@ -13,8 +13,11 @@ import java.util.List;
 @RequestMapping("color")
 public class ColorController {
 
-    @Autowired
-    private ColorService colorService;
+    private final ColorService colorService;
+
+    public ColorController(ColorService colorService) {
+        this.colorService = colorService;
+    }
 
     @PostMapping
     public void save(@RequestBody ColorRequest request) {

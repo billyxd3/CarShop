@@ -4,7 +4,6 @@ import com.bren.carshop.dto.request.UserRequest;
 import com.bren.carshop.dto.response.AuthenticationResponse;
 import com.bren.carshop.service.UserService;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +15,11 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/login")
     public AuthenticationResponse login(@Valid @RequestBody UserRequest request) {

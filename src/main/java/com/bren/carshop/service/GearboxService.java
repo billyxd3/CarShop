@@ -6,7 +6,6 @@ import com.bren.carshop.entity.Gearbox;
 import com.bren.carshop.exception.HasDependenciesException;
 import com.bren.carshop.exception.NoMatchesException;
 import com.bren.carshop.repository.GearboxRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +15,18 @@ import java.util.stream.Collectors;
 @Service
 public class GearboxService {
 
-    @Autowired
-    private GearboxRepository gearboxRepository;
+    private final GearboxRepository gearboxRepository;
+
+    public GearboxService(GearboxRepository gearboxRepository) {
+        this.gearboxRepository = gearboxRepository;
+    }
 
     public void save(GearboxRequest request) {
-        gearboxRepository.save(colorRequestToColor(null,request));
+        gearboxRepository.save(colorRequestToColor(null, request));
     }
 
     public void update(GearboxRequest request, Long id) {
-        gearboxRepository.save(colorRequestToColor(findOne(id),request));
+        gearboxRepository.save(colorRequestToColor(findOne(id), request));
     }
 
     public List<GearboxResponse> findAll(String fieldName) {
@@ -33,7 +35,7 @@ public class GearboxService {
     }
 
     public void delete(Long id) {
-        Gearbox gearbox  = findOne(id);
+        Gearbox gearbox = findOne(id);
         if (gearbox.getCars().isEmpty()) {
             gearboxRepository.delete(gearbox);
         } else {

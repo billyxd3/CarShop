@@ -16,15 +16,18 @@ import java.util.stream.Collectors;
 @Service
 public class DriverTypeService {
 
-    @Autowired
-    private DriverTypeRepository driverTypeRepository;
+    private final DriverTypeRepository driverTypeRepository;
+
+    public DriverTypeService(DriverTypeRepository driverTypeRepository) {
+        this.driverTypeRepository = driverTypeRepository;
+    }
 
     public void save(DriverTypeRequest request) {
-        driverTypeRepository.save(driverTypeToDriverType(null,request));
+        driverTypeRepository.save(driverTypeToDriverType(null, request));
     }
 
     public void update(DriverTypeRequest request, Long id) {
-        driverTypeRepository.save(driverTypeToDriverType(findOne(id),request));
+        driverTypeRepository.save(driverTypeToDriverType(findOne(id), request));
     }
 
     public List<DriverTypeResponse> findAll(String fieldName) {
@@ -33,7 +36,7 @@ public class DriverTypeService {
     }
 
     public void delete(Long id) {
-        DriverType driverType  = findOne(id);
+        DriverType driverType = findOne(id);
         if (driverType.getCars().isEmpty()) {
             driverTypeRepository.delete(driverType);
         } else {

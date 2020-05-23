@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Car Catalog</title>
-    <link rel="shortcut icon" type="image/x-icon" href="img/logo3.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo3.png"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="css/carCatalog.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="js/utils.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="js/utils.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js'></script>
     <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js'></script>
@@ -25,50 +27,64 @@
 </head>
 <body>
 <ul class="sidenav" id="mobile-demo">
-<div id='stars2'></div>
+    <div id='stars2'></div>
     <div id="stars5"></div>
-    <li><div class="user-view">
-        <div class="background">
-            <img src="http://placehold.it/1024x512/454545">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="http://placehold.it/1024x512/454545">
+            </div>
+            <a href="#user"><img class="circle" src="img/user2.png"></a>
+            <a href="#name"><span class="mob-username white-text name">Guest</span></a>
         </div>
-        <a href="#user"><img class="circle" src="img/user2.png"></a>
-        <a href="#name"><span class="mob-username white-text name">Guest</span></a>
-    </div></li>
+    </li>
     <li><a class="modal-trigger white-text" href="#modal1">Sign in</a></li>
     <li><a class="modal-trigger white-text" href="#modal2">Log in</a></li>
     <li><a class="log-out white-text" href="#!">Log Out</a></li>
-    <li><div class="divider"></div></li>
+    <li>
+        <div class="divider"></div>
+    </li>
     <li><a class="white-text" href="#">Home</a></li>
     <li><a class="white-text" href="/catalog">Product</a></li>
     <li><a class="white-text" href="/index#about-section">About us</a></li>
 </ul>
 <div class="navbar-fixed">
     <nav class="nav-extended">
-    <div id='stars'></div>
+        <div id='stars'></div>
         <div class="nav-wrapper ">
             <div class="container">
-                <a href="/index" class="brand-logo"><img src= >Auto Ban Shop</a>
+                <!--                <a href="/index" class="brand-logo"><img src=>Auto Ban Shop</a>-->
                 <a href="/index" data-target="mobile-demo" class="
             sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/index">Home</a></li>
-                    <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/catalog"><i class="fa fa-car"></i></a></li>
+                    <li><a class="tooltipped btn-floating btn-small indigo darken-4 hoverable" href="/catalog"><i
+                            class="fa fa-car"></i></a></li>
                     <li><a href="/index#about-section">About us</a></li>
                     <li><a class="modal-trigger" href="#modal1">Sign in</a></li>
                     <li><a class="modal-trigger" href="#modal2">Log in</a></li>
-                    <li><a href="https://www.instagram.com/?hl=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Instagram">
+                    <li><a href="https://www.instagram.com/?hl=ru"
+                           class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom"
+                           data-tooltip="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a></li>
-                    <li><a href="https://www.facebook.com" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Facebook">
+                    <li><a href="https://www.facebook.com"
+                           class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom"
+                           data-tooltip="Facebook">
                         <i class="fab fa-facebook"></i>
                     </a></li>
-                    <li><a href="https://twitter.com/?lang=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Twitter">
+                    <li><a href="https://twitter.com/?lang=ru"
+                           class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom"
+                           data-tooltip="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a></li>
-                    <li><a class="page-username white-text flow-text" href="#!" style="font-style:oblique;font-weight:bold">Guest</a></li>
-                    <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-user-circle" style="size: 100px"></i></a></li>
+                    <li><a class="page-username white-text flow-text" href="#!"
+                           style="font-style:oblique;font-weight:bold">Guest</a></li>
+                    <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i
+                            class="fas fa-user-circle" style="size: 100px"></i></a></li>
                     <li><a class="log-out white-text" href="#!">Log Out</a></li>
-                    <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-door-open"></i></a></li>
+                    <!--                    <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i-->
+                    <!--                            class="fas fa-door-open"></i></a></li>-->
                 </ul>
             </div>
         </div>
@@ -77,7 +93,7 @@
 
 <div id='stars3'></div>
 <div class="row">
-<!--    <div class="col s12 m7 l8 xl10 ">-->
+    <!--    <div class="col s12 m7 l8 xl10 ">-->
     <div>
         <h2 class="header white-text"></h2>
         <div class="container-product">
@@ -90,17 +106,19 @@
     <div class="modal-content">
         <div id="stars6"></div>
         <div class="row">
-            <form  class="col s12">
+            <form class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons cyan-text teal-text text-lighten-1 prefix">account_circle</i>
-                        <input type="text" class="signin-username validate white-text" placeholder="Username" id="username">
+                        <input type="text" class="signin-username validate white-text" placeholder="Username"
+                               id="username">
                         <label for="username">Username</label>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons cyan-text teal-text text-lighten-1 prefix">phone</i>
-                            <input type="tel" class="phone validate white-text" placeholder="Phone" id="phone" pattern="[0-9]{10}"
+                            <input type="tel" class="phone validate white-text" placeholder="Phone" id="phone"
+                                   pattern="[0-9]{10}"
                                    required>
                             <small class="col xl offset-xl4 white-text">Format: 1234567890</small>
                             <label for="phone">Phone</label>
@@ -108,8 +126,9 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix" >lock</i>
-                            <input type="password" class="signin-password white-text" placeholder="Password" id="password">
+                            <i class="material-icons cyan-text teal-text text-lighten-1 prefix">lock</i>
+                            <input type="password" class="signin-password white-text" placeholder="Password"
+                                   id="password">
                             <label for="password">Password</label>
                         </div>
                     </div>
@@ -136,17 +155,19 @@
     <div class="modal-content">
         <div id="stars9"></div>
         <div class="row">
-            <form  class="col s12">
+            <form class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons cyan-text teal-text text-lighten-1 prefix">account_circle</i>
-                        <input type="text" class="log-username validate white-text" placeholder="Username" id="log-username">
+                        <input type="text" class="log-username validate white-text" placeholder="Username"
+                               id="log-username">
                         <label for="log-username">Username</label>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons cyan-text teal-text text-lighten-1 prefix">lock</i>
-                            <input type="password" class="log-password white-text" placeholder="Password" id="log-password">
+                            <input type="password" class="log-password white-text" placeholder="Password"
+                                   id="log-password">
                             <label for="log-password">Password</label>
                         </div>
                     </div>
@@ -168,7 +189,9 @@
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">Footer content</h5>
-                <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet corporis distinctio, eius fuga id optio quae quisquam reiciendis sequi tempora, vel vero vitae voluptate voluptatem?</p>
+                <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
+                    corporis distinctio, eius fuga id optio quae quisquam reiciendis sequi tempora, vel vero vitae
+                    voluptate voluptatem?</p>
             </div>
             <div class="col l4 offset-12 s12">
                 <h5 class="white-text">Connect us</h5>
@@ -208,8 +231,6 @@
 
              <div class="col s12 offset-s12  offset-m1  offset-l1 xl6" ">
              <div class="card" >
-
-
                        <div class="card-stacked">
                             <div class="card-content">
                             <h2 class="white-text">${data.modelResponse.makeResponse.name + " " + data.modelResponse.name + " " + data.year}</h2>
@@ -256,10 +277,10 @@
             <div class="row">
                 <div>
                     <a class="waves-effect waves-light btn-large" href="/catalog">Back</a>
-                    <a id="buy-phone" class="waves-effect waves-light btn-large" href="tel:123-456-7890">Call to Buy</a>
+                    <a id="buy-phone" class="waves-effect waves-light btn-large" href="tel:${data.phoneNumber}">Call to Buy</a>
                 <div class="row">
                     <div>
-                        <a class="flow-text white-text " href="tel:123-456-7890">tel:123-456-7890</a>
+                        <a class="flow-text white-text " href="tel:${data.phoneNumber}"> Number: ${data.phoneNumber}</a>
                     </div>
                 </div>
             </div>
@@ -270,7 +291,8 @@
               </div>
         `)
     };
-    $.ajax ({
+
+    $.ajax({
         url: `http://localhost:8080/car/one/${searchParams.get('id')}`,
         type: 'GET',
         success: res => {
@@ -278,6 +300,7 @@
         },
         error: console.log()
     })
+
 
     const getProperties = () => {
         localStorage.getItem('sec-token');
@@ -299,10 +322,9 @@
     getProperties();
 
 
-
 </script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.sidenav').sidenav();
         $('.modal').modal({
             dismissible: false,

@@ -43,6 +43,8 @@ public class CarRequest {
 
     private String photo;
 
+    private String phoneNumber;
+
     private Boolean carConditionNew;
 
     private Integer power;

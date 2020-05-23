@@ -3,7 +3,6 @@ package com.bren.carshop.controller;
 import com.bren.carshop.dto.request.CityRequest;
 import com.bren.carshop.dto.response.CityResponse;
 import com.bren.carshop.service.CityService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 @RequestMapping("city")
 public class CityController {
 
-    @Autowired
-    private CityService cityService;
+    private final CityService cityService;
+
+    public CityController(CityService cityService) {
+        this.cityService = cityService;
+    }
 
     @PostMapping
     public void save(@RequestBody CityRequest request) {
@@ -43,7 +45,7 @@ public class CityController {
 
     @PutMapping
     public void update(@RequestBody CityRequest request, Long id) {
-        cityService.update(request,id);
+        cityService.update(request, id);
     }
 
     @DeleteMapping

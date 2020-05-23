@@ -26,8 +26,8 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
-                .produces(Sets.newHashSet(MediaType.APPLICATION_JSON_VALUE))    //
-                .securitySchemes(Arrays.asList(apiKey()));                      //
+                .produces(Sets.newHashSet(MediaType.APPLICATION_JSON_VALUE))
+                .securitySchemes(Arrays.asList(apiKey()));
     }
 
     private ApiInfo apiInfo() {

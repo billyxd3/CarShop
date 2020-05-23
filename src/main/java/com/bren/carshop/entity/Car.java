@@ -14,7 +14,8 @@ import java.util.List;
 @Setter
 @Entity
 //@Data
-public class Car {
+public class
+Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,6 +31,8 @@ public class Car {
     private Double rating;
 
     private String photo;
+
+    private String phoneNumber;
 
     @Column(columnDefinition = "text")
     private String description;
@@ -63,8 +66,8 @@ public class Car {
     @ManyToOne
     private City city;
 
-    @ManyToMany(mappedBy = "favoriteCars")
-    private List<User> users = new ArrayList<>();
+//    @ManyToMany(mappedBy = "favoriteCars")
+//    private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "car")
     private List<Comment> comments = new ArrayList<>();

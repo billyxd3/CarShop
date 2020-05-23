@@ -6,7 +6,6 @@ import com.bren.carshop.entity.Color;
 import com.bren.carshop.exception.HasDependenciesException;
 import com.bren.carshop.exception.NoMatchesException;
 import com.bren.carshop.repository.ColorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,24 +15,27 @@ import java.util.stream.Collectors;
 @Service
 public class ColorService {
 
-    @Autowired
-    private ColorRepository colorRepository;
+    private final ColorRepository colorRepository;
+
+    public ColorService(ColorRepository colorRepository) {
+        this.colorRepository = colorRepository;
+    }
 
     public void save(ColorRequest request) {
-        colorRepository.save(colorRequestToColor(null,request));
+        colorRepository.save(colorRequestToColor(null, request));
     }
 
     public void update(ColorRequest request, Long id) {
-        colorRepository.save(colorRequestToColor(findOne(id),request));
+        colorRepository.save(colorRequestToColor(findOne(id), request));
     }
 
     public List<ColorResponse> findAll(String fieldName) {
         return colorRepository.findAll(Sort.by(fieldName)).stream()
-                    .map(ColorResponse::new).collect(Collectors.toList());
+                .map(ColorResponse::new).collect(Collectors.toList());
     }
 
     public void delete(Long id) {
-        Color color  = findOne(id);
+        Color color = findOne(id);
         if (color.getCars().isEmpty()) {
             colorRepository.delete(color);
         } else {

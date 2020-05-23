@@ -6,7 +6,6 @@ import com.bren.carshop.entity.Fuel;
 import com.bren.carshop.exception.HasDependenciesException;
 import com.bren.carshop.exception.NoMatchesException;
 import com.bren.carshop.repository.FuelRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +15,18 @@ import java.util.stream.Collectors;
 @Service
 public class FuelService {
 
-    @Autowired
-    private FuelRepository fuelRepository;
+    private final FuelRepository fuelRepository;
+
+    public FuelService(FuelRepository fuelRepository) {
+        this.fuelRepository = fuelRepository;
+    }
 
     public void save(FuelRequest request) {
-        fuelRepository.save(fuelRequestToFuel(null,request));
+        fuelRepository.save(fuelRequestToFuel(null, request));
     }
 
     public void update(FuelRequest request, Long id) {
-        fuelRepository.save(fuelRequestToFuel(findOne(id),request));
+        fuelRepository.save(fuelRequestToFuel(findOne(id), request));
     }
 
     public List<FuelResponse> findAll(String fieldName) {
@@ -33,7 +35,7 @@ public class FuelService {
     }
 
     public void delete(Long id) {
-        Fuel fuel  = findOne(id);
+        Fuel fuel = findOne(id);
         if (fuel.getCars().isEmpty()) {
             fuelRepository.delete(fuel);
         } else {

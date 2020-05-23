@@ -6,7 +6,6 @@ import com.bren.carshop.entity.Make;
 import com.bren.carshop.exception.HasDependenciesException;
 import com.bren.carshop.exception.NoMatchesException;
 import com.bren.carshop.repository.MakeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +15,21 @@ import java.util.stream.Collectors;
 @Service
 public class MakeService {
 
-    @Autowired
-    private MakeRepository makeRepository;
+    private final MakeRepository makeRepository;
 
-    @Autowired
-    private CountryService countryService;
+    private final CountryService countryService;
+
+    public MakeService(MakeRepository makeRepository, CountryService countryService) {
+        this.makeRepository = makeRepository;
+        this.countryService = countryService;
+    }
 
     public void save(MakeRequest request) {
         makeRepository.save(makeRequestToMake(null, request));
     }
 
     public void update(MakeRequest request, Long id) {
-        makeRepository.save(makeRequestToMake(findOne(id),request));
+        makeRepository.save(makeRequestToMake(findOne(id), request));
 
     }
 
@@ -39,11 +41,6 @@ public class MakeService {
             throw new HasDependenciesException("Can`t delete make with id " + id + " because it has dependencies");
         }
     }
-
-//    public List<MakeResponse> findAll() {
-//        return makeRepository.findAll().stream()
-//                .map(MakeResponse::new).collect(Collectors.toList());
-//    }
 
     public List<MakeResponse> findAll(String fieldName) {
         return makeRepository.findAll(Sort.by(fieldName)).stream()
@@ -65,7 +62,6 @@ public class MakeService {
         }
         make.setName(request.getName());
         make.setCountry(countryService.findOne(request.getCountryId()));
-//        make.setCountry(countryService.findByIdAndName(request.getCountryId(),request.getCountryName()));
         return make;
     }
 
