@@ -20,6 +20,8 @@ target/
 *.ipr
 .DS_Store
 out/
+.static
+
 
 ### NetBeans ###
 /nbproject/private/
@@ -54,3 +56,4 @@ build/
 .mtj.tmp/
 
 /.ssh
+
