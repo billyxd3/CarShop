@@ -56,4 +56,6 @@ build/
 .mtj.tmp/
 
 /.ssh
+sshgit.pub
+sshgit
 
