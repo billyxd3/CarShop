@@ -22,21 +22,15 @@ public class CarSpecification implements Specification<Car> {
     private Integer minPower;
     private Integer maxPower;
     private Long bodyTypeId;
-//    private Long bodyTypeId;
-//    private List<Long> bodyTypeIds;
     private Long driverTypeId;
-//    private List<Long> driverTypeIds;
     private Long fuelId;
-//    private List<Long> fuelIds;
     private Long gearboxId;
-//    private List<Long> gearboxIds;
     private Long colorId;
-//    private List<Long> colorIds;
     private Long modelId;
     private Long makeId;
     private Long countryId;
     private Long cityId;
-    private List<Long> favoriteCarsId;
+
 
     public CarSpecification(CarCriteriaRequest carCriteria) {
         this.minYear = carCriteria.getMinYear();
@@ -59,7 +53,7 @@ public class CarSpecification implements Specification<Car> {
         this.makeId = carCriteria.getMakeId();
         this.countryId = carCriteria.getCountryId();
         this.cityId = carCriteria.getCityId();
-//        this.favoriteCarsIds = carCriteria.getFavoriteCarsIds();
+
     }
 
     @Override
@@ -75,10 +69,6 @@ public class CarSpecification implements Specification<Car> {
         predicates.add(findByCondition(root,cb,abs,"abs"));
         predicates.add(findByCondition(root,cb,leatherSeats,"leatherSeats"));
         predicates.add(findByCountryAndMakeAndModel(root,cb));
-//        predicates.add(findByCountryAndCity(root,cb));
-//        predicates.add(findByCountry(root,cb));
-
-
         predicates.add(findByCity(root,cb));
         predicates.add(findByDriverType(root,cb));
         predicates.add(findByBodyTypeId(root,cb));
@@ -86,8 +76,12 @@ public class CarSpecification implements Specification<Car> {
         predicates.add(findByFuelId(root,cb));
         predicates.add(findByColorId(root,cb));
         predicates.add(findByGearboxId(root,cb));
+        return cb.and(predicates.toArray(new Predicate[0]));
 
 
+
+        //        predicates.add(findByCountryAndCity(root,cb));
+//        predicates.add(findByCountry(root,cb));
 //        predicates.add(findByIds(root,cb,driverTypeIds,"driverType"));
 //        predicates.add(findByIds(root,cb,driverTypeIds,"driverType"));
 //        predicates.add(findByIds(root,cb,bodyTypeIds,"bodyType"));
@@ -95,7 +89,6 @@ public class CarSpecification implements Specification<Car> {
 //        predicates.add(findByIds(root,cb,gearboxIds,"gearbox"));
 //        predicates.add(findByIds(root,cb,colorIds,"color"));
 
-        return cb.and(predicates.toArray(new Predicate[0]));
     }
 
     private Predicate findByCity(Root<Car> root, CriteriaBuilder cb) {

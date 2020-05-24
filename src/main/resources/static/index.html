@@ -86,8 +86,8 @@
                 <li><a href="https://twitter.com/?lang=ru" class="tooltipped btn-floating btn-small indigo darken-4 hoverable" data-position="bottom" data-tooltip="Twitter">
                     <i class="fab fa-twitter"></i>
                 </a></li>
-                <li><a class="page-username indigo-text flow-text darken-5" href="#!" style="font-style:oblique;font-weight:bold">Guest</a></li>
-                <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-user-circle" style="size: 100px"></i></a></li>
+                <li><a class="page-username white-text flow-text darken-5" href="#!" style="font-style:oblique;font-weight:bold">Guest</a></li>
+<!--                <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-user-circle" style="size: 100px"></i></a></li>-->
                 <li><a class="log-out white-text" href="#!">Log Out</a></li>
 <!--                <li><a class="tooltipped btn-floating btn-small indigo lighten-2" href="#!"><i class="fas fa-door-open"></i></a></li>-->
             </ul>
@@ -102,7 +102,7 @@
     <div class="row">
 
         <div class="col s12 l4">
-            <img src="img/blackmerin.jpeg" alt="" class="responsive-img materialboxed" width="60%">
+            <img src="img/blackmerin.jpeg" alt="" class="responsive-img materialboxed" >
         </div>
         <div class="col s12 l6 offset-l1">
             <h2 class="indigo-text text-darken-4">Car</h2>
@@ -334,7 +334,6 @@
                     console.log("sadsadsadsa");
                     console.log(res.userRole);
                     if (res.userRole == 'ROLE_ADMIN') {
-                        console.log('dsadsadsadsadsa');
                         $('.admin-page').show();
                     }
                 },

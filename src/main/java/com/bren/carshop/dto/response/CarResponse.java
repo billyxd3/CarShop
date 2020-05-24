@@ -21,7 +21,6 @@ public class CarResponse {
     private Integer power;
     private Boolean abs;
     private Boolean leatherSeats;
-    //    private Long modelId;
     private ModelResponse modelResponse;
     private BodyTypeResponse bodyTypeResponse;
     private CityResponse cityResponse;

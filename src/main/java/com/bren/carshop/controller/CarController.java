@@ -30,11 +30,6 @@ public class CarController {
         carService.save(request);
     }
 
-//    @GetMapping
-//    public List<CarResponse> findAll() {
-//        return carService.findAll();
-//    }
-
     @GetMapping
     public PageResponse<CarResponse> findPage(
             @RequestParam Integer page,
@@ -69,9 +64,18 @@ public class CarController {
         carService.delete(id);
     }
 
+
+
+
 //    @GetMapping
 //    public PageResponse<CarResponse> findPage(@Valid PaginationRequest paginationRequest) {
 //
+//    }
+
+
+//    @GetMapping
+//    public List<CarResponse> findAll() {
+//        return carService.findAll();
 //    }
 
 }

@@ -21,23 +21,25 @@ public class CarCriteriaRequest {
     private Integer minPower;
     private Integer maxPower;
     private Long bodyTypeId;
-//    private Long bodyTypeId;
-//    private List<Long> bodyTypeIds;
     private Long colorId;
-//    private List<Long> colorIds;
-//    private Long colorId;
     private Long driverTypeId;
-//    private List<Long> driverTypeIds;
     private Long fuelId;
-//    private List<Long> fuelIds;
     private Long gearboxId;
-//    private List<Long> gearboxIds;
     private Long modelId;
     private Long makeId;
     private Long countryId;
     private Long cityId;
     private List<Long> favoriteCarsIds;
-//    private List<Long> favoriteCarsIds;
 
+
+
+//    private List<Long> favoriteCarsIds;
+    //    private List<Long> driverTypeIds;
+//    private Long bodyTypeId;
+//    private List<Long> bodyTypeIds;
+    //    private List<Long> gearboxIds;
+    //    private List<Long> fuelIds;
+    //    private List<Long> colorIds;
+//    private Long colorId;
 
 }
