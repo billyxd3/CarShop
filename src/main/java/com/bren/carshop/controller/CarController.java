@@ -7,10 +7,12 @@ import com.bren.carshop.dto.response.PageResponse;
 import com.bren.carshop.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 
 @CrossOrigin
@@ -26,8 +28,9 @@ public class CarController {
 
 
     @PostMapping
-    public void save(@Valid @RequestBody CarRequest request) throws IOException {
+    public HttpStatus save(@Valid @RequestBody CarRequest request) throws IOException {
         carService.save(request);
+        return HttpStatus.CREATED;
     }
 
     @GetMapping
@@ -55,13 +58,16 @@ public class CarController {
     }
 
     @PutMapping
-    public void update(@Valid @RequestBody CarRequest request, Long id) throws IOException {
+    public HttpStatus update(@Valid @RequestBody CarRequest request, Long id) throws IOException {
         carService.update(request, id);
+        return HttpStatus.OK;
     }
 
     @DeleteMapping
-    public void delete(Long id) {
+    public HttpStatus delete(Long id) {
         carService.delete(id);
+        return HttpStatus.OK;
+
     }
 
 
